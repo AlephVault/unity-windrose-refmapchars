@@ -1,5 +1,5 @@
-# WindRose REFMAP
-This is the WindRose REFMAP project, which defines two pipelines to compose REFMAP characters, includes the standard REFMAP assets, and integrates everyting into character objects.
+# WindRose REFMAP Characters
+This is the WindRose REFMAP Characters project, which defines two pipelines to compose REFMAP characters, includes the standard REFMAP assets, and integrates everyting into character objects.
 
 # Install
 To install this package you need to open the package manager in your project and:
