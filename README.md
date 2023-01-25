@@ -12,7 +12,7 @@ To install this package you need to open the package manager in your project and
      - "name": "GameMeanMachine"
      - "url": "https://unity.packages.gamemeanmachine.com"
      - "scopes": ["com.gamemeanmachine"]
-  2. Look for this package: `com.gamemeanmachine.unity.windrose.refmap`.
+  2. Look for this package: `com.gamemeanmachine.unity.windrose.refmapchars`.
   3. Install it.
 
 # Notes
