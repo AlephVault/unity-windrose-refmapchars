@@ -9,7 +9,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {

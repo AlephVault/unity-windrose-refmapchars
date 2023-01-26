@@ -1,7 +1,7 @@
 using System;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Types
     {

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using GameMeanMachine.Unity.RefMapChars.Types;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {

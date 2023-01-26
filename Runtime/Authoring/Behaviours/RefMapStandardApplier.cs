@@ -1,10 +1,10 @@
-using GameMeanMachine.Unity.RefMapChars.Types;
-using GameMeanMachine.Unity.RefMapChars.Types.Traits;
-using GameMeanMachine.Unity.RefMapChars.Types.Traits.Standard;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {

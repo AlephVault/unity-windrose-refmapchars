@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using AlephVault.Unity.TextureUtils.Types;
 using AlephVault.Unity.TextureUtils.Utils;
-using GameMeanMachine.Unity.RefMapChars.Types;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Core
     {

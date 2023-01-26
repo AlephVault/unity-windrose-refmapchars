@@ -1,12 +1,12 @@
 using System;
 using AlephVault.Unity.SpriteUtils.Types;
 using AlephVault.Unity.TextureUtils.Types;
-using GameMeanMachine.Unity.RefMapChars.Core;
-using GameMeanMachine.Unity.RefMapChars.Types;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Core;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.RefMapChars
+namespace GameMeanMachine.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {
