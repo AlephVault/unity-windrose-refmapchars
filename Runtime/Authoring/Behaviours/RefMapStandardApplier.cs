@@ -1,3 +1,4 @@
+using AlephVault.Unity.SpriteUtils.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;
@@ -14,10 +15,11 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   A RefMap standard applier adds the 9 missing parts
             ///   to define the cloth traits.
             /// </summary>
-            public abstract class RefMapStandardApplier : RefMapApplier,
+            public abstract class RefMapStandardApplier : RefMapBaseApplier,
                 IApplier<BootsTrait>, IApplier<PantsTrait>, IApplier<ShirtTrait>,
                 IApplier<ChestTrait>, IApplier<WaistTrait>, IApplier<ArmsTrait>,
-                IApplier<LongShirtTrait>, IApplier<ShoulderTrait>, IApplier<CloakTrait>
+                IApplier<LongShirtTrait>, IApplier<ShoulderTrait>, IApplier<CloakTrait>,
+                IRefMapComposite
             {
                 /// <summary>
                 ///   Whether the boots should go over the
@@ -36,59 +38,59 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   The boots image.
                 /// </summary>
-                public override RefMapSource Boots => bootsTrait?.Front;
+                public RefMapSource Boots => bootsTrait?.Front;
 
                 /// <summary>
                 ///   The pants image.
                 /// </summary>
-                public override RefMapSource Pants => pantsTrait?.Front;
+                public RefMapSource Pants => pantsTrait?.Front;
 
                 /// <summary>
                 ///   The shirt image. Usually, with no arms.
                 /// </summary>
-                public override RefMapSource Shirt => shirtTrait?.Front;
+                public RefMapSource Shirt => shirtTrait?.Front;
 
                 /// <summary>
                 ///   The chest (light armor) image.
                 /// </summary>
-                public override RefMapSource Chest => chestTrait?.Front;
+                public RefMapSource Chest => chestTrait?.Front;
 
                 /// <summary>
                 ///   The waist image.
                 /// </summary>
-                public override RefMapSource Waist => waistTrait?.Front;
+                public RefMapSource Waist => waistTrait?.Front;
 
                 /// <summary>
                 ///   The arms image.
                 /// </summary>
-                public override RefMapSource Arms => armsTrait?.Front;
+                public RefMapSource Arms => armsTrait?.Front;
 
                 /// <summary>
                 ///   The long shirt image.
                 /// </summary>
-                public override RefMapSource LongShirt => longShirtTrait?.Front;
+                public RefMapSource LongShirt => longShirtTrait?.Front;
 
                 /// <summary>
                 ///   The shoulder image.
                 /// </summary>
-                public override RefMapSource Shoulder => shoulderTrait?.Front;
+                public RefMapSource Shoulder => shoulderTrait?.Front;
 
                 /// <summary>
                 ///   The cloak image.
                 /// </summary>
-                public override RefMapSource Cloak => cloakTrait?.Front;
+                public RefMapSource Cloak => cloakTrait?.Front;
 
                 /// <summary>
                 ///   Whether the boots should go over the
                 ///   pants or not.
                 /// </summary>
-                public override bool BootsOverPants => bootsOverPants;
+                public bool BootsOverPants => bootsOverPants;
 
                 /// <summary>
                 ///   Whether the necklace should go over the
                 ///   long shirt or not.
                 /// </summary>
-                public override bool NecklaceOverLongShirt => necklaceOverLongShirt;
+                public bool NecklaceOverLongShirt => necklaceOverLongShirt;
 
                 /// <summary>
                 ///   The boots trait.
@@ -138,13 +140,31 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   The cloth hash involves the 9 cloth parts.
                 /// </summary>
-                protected override string ClothHash()
+                protected string ClothHash()
                 {
                     return $"{bootsTrait?.Hash ?? ""}:{pantsTrait?.Hash ?? ""}:{shirtTrait?.Hash ?? ""}:" +
                            $"{chestTrait?.Hash ?? ""}:{waistTrait?.Hash ?? ""}:{armsTrait?.Hash ?? ""}:" +
                            $"{longShirtTrait?.Hash ?? ""}:{shoulderTrait?.Hash ?? ""}:{cloakTrait?.Hash ?? ""}";
                 }
 
+                /// <summary>
+                ///   The hash involves the 15 parts.
+                /// </summary>
+                public override string Hash()
+                {
+                    return $"{bodyTrait?.Hash ?? ""}:{hairTrait?.Hash ?? ""}:{necklaceTrait?.Hash ?? ""}:" +
+                           $"{hatTrait?.Hash ?? ""}:{skilledHandItemTrait?.Hash ?? ""}:" +
+                           $"{dumbHandItemTrait?.Hash ?? ""}:{ClothHash()}:{BootsOverPants}:{NecklaceOverLongShirt}";
+                }
+
+                /// <summary>
+                ///   Gets the grid, and uses it.
+                /// </summary>
+                protected override void RefreshTexture()
+                {
+                    UseGrid(cache.Get(this));
+                }
+                
                 /// <summary>
                 ///   Applies a boots trait. When passing null, it clears
                 ///   the boots trait.
@@ -252,6 +272,14 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     cloakTrait = appliance;
                     if (force) RefreshTexture();
                 }
+                
+                /// <summary>
+                ///   Using the grid depends on the selection type
+                ///   to make use of, and that depends on the type
+                ///   of visual to tie this behaviour to.
+                /// </summary>
+                /// <param name="grid">The grid to use</param>
+                protected abstract void UseGrid(SpriteGrid grid);
             }
         }
     }
