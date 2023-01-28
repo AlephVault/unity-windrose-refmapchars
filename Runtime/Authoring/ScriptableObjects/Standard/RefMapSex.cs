@@ -41,6 +41,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         Arms,
                         Waist,
                         Shoulder,
+                        Cloth,
                         Hair,
                         HairTail,
                         Hat
@@ -110,7 +111,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             if (code == ItemTypeCode.Hair || code == ItemTypeCode.HairTail) continue;
                             RefMapItemType itemType = CreateInstance<RefMapItemType>();
-                            RefMapItemType.Populate(Path.Combine(path, code.ToString()), itemType);
+                            if (code != ItemTypeCode.Cloth)
+                            {
+                                // Full clothes are entirely custom. They must
+                                // be built from an entirely separate process
+                                // and do not come by default.
+                                RefMapItemType.Populate(Path.Combine(path, code.ToString()), itemType);
+                            }
                             sex.itemTypes.Add(code, itemType);
                         }
                         RefMapItemType hairType = CreateInstance<RefMapItemType>();

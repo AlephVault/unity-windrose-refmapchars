@@ -74,6 +74,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         while (true)
                         {
                             // First, look for textures of name {idx}_{color}.png.
+                            Debug.Log($"Path is: {path}");
                             string[] files = Directory.GetFiles(path, $"{idx}_*.png");
                             if (files.Length != 0)
                             {

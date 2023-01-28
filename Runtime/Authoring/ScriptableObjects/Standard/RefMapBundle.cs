@@ -88,22 +88,27 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     [MenuItem("Assets/Create/RefMap Chars/Full RefMap Bundle", false, 101)]
                     private static void CreateFullRefMapBundle()
                     {
+                        // Get the selected object.
                         string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-                        string parent = Path.GetDirectoryName(path);
-                        string refmap = Path.Combine(parent, "RefMap");
-                        // Preliminary: {parent}/RefMap must NOT exist. Otherwise, this
-                        // is an error to be logged and everything to be aborted.
+
+                        // The directory must NOT already contain a
+                        // directory named RefMap. We will create it
+                        // right now.
+                        string refmap = Path.Combine(path, "RefMap");
                         if (AssetDatabase.IsValidFolder(refmap))
                         {
                             Debug.LogError($"Directory {refmap} already exists. Please delete it or " +
                                            $"move it to another location and try again");
                             return;
                         }
+                        AssetDatabase.CreateFolder(path, "RefMap");
                         
                         // First: Create the bundle and populate it.
                         RefMapBundle bundle = CreateInstance<RefMapBundle>();
-                        Populate(path, bundle);
-                        AssetDatabase.CreateFolder(parent, "RefMap");
+                        Populate(
+                            "Packages/com.gamemeanmachine.unity.windrose.refmapchars/Runtime/Graphics",
+                            bundle
+                        );
                         
                         // Then: Save EACH element appropriately under the refmap
                         // directory.
@@ -154,6 +159,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     /// <param name="main">The main bundle to read into</param>
                     internal static void Populate(string path, RefMapBundle main)
                     {
+                        Debug.Log($"Path is: {path}");
                         RefMapSex male = CreateInstance<RefMapSex>();
                         RefMapSex female = CreateInstance<RefMapSex>();
                         RefMapSex.Populate(Path.Combine(path, "Male"), male);
