@@ -132,7 +132,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// </summary>
                 /// <param name="composite">The composite to get the grid for</param>
                 /// <returns>The appropriate sprite grid</returns>
-                public SpriteGrid Get(IRefMapComposite composite)
+                public SpriteGrid Get(IRefMapStandardComposite composite)
                 {
                     return GridFromTexture(composite.Hash(), () =>
                     {

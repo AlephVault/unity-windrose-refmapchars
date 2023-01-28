@@ -27,7 +27,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   The applier that will take the update.
                 /// </summary>
-                [SerializeField]
                 private MultiRoseAnimatedSelectionApplier applier;
                 
                 private void Awake()

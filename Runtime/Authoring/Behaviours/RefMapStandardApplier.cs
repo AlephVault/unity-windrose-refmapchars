@@ -19,7 +19,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 IApplier<BootsTrait>, IApplier<PantsTrait>, IApplier<ShirtTrait>,
                 IApplier<ChestTrait>, IApplier<WaistTrait>, IApplier<ArmsTrait>,
                 IApplier<LongShirtTrait>, IApplier<ShoulderTrait>, IApplier<CloakTrait>,
-                IRefMapComposite
+                IRefMapStandardComposite
             {
                 /// <summary>
                 ///   Whether the boots should go over the
