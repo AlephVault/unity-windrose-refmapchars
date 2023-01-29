@@ -43,17 +43,18 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// </summary>
                 [SerializeField]
                 private RefMapSexDictionary sexes = new RefMapSexDictionary();
+
+                /// <summary>
+                ///   The bundle's extra data.
+                /// </summary>
+                [SerializeField]
+                private RefMapExtra extra;
                 
                 /// <summary>
                 ///   Gets a <see cref="SexData"/> at a given sex code.
                 /// </summary>
                 /// <param name="sexCode">The code to retrieve the data for</param>
                 public RefMapSex this[SexCode sexCode] => sexes[sexCode];
-
-                /// <summary>
-                ///   The count of sexes in this main bundle.
-                /// </summary>
-                public int Count => sexes.Count;
                 
                 /// <summary>
                 ///   Gets the available sex data elements in this main bundle.
@@ -103,6 +104,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     
                     // First: Create the bundle and populate it.
                     RefMapBundle bundle = CreateInstance<RefMapBundle>();
+                    bundle.extra = CreateInstance<RefMapExtra>();
                     Populate(
                         "Packages/com.gamemeanmachine.unity.windrose.refmapchars/Runtime/Graphics",
                         bundle
@@ -143,6 +145,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         string sexPath = Path.Combine(refmap, $"{sexCode}.asset");
                         AssetDatabase.CreateAsset(sex, sexPath);
                     }
+
+                    string extraPath = Path.Combine(refmap, "Extra.asset");
+                    AssetDatabase.CreateAsset(bundle.extra, extraPath);
                     
                     string bundlePath = Path.Combine(refmap, "Bundle.asset");
                     AssetDatabase.CreateAsset(bundle, bundlePath);
