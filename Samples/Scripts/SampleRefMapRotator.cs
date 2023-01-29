@@ -1,6 +1,6 @@
 using System;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.Behaviours;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects.Standard;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;

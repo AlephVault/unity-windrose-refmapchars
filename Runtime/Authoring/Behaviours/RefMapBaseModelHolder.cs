@@ -34,13 +34,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The bundle. This one is only set at prefab time.
                 /// </summary>
                 [SerializeField]
-                private RefMapBundle bundle;
+                protected RefMapBundle bundle;
 
                 /// <summary>
                 ///   The sex to use.
                 /// </summary>
                 [SerializeField]
-                private RefMapBundle.SexCode sex = RefMapBundle.SexCode.Male;
+                protected RefMapBundle.SexCode sex = RefMapBundle.SexCode.Male;
 
                 /// <summary>
                 ///   The body color to use.
