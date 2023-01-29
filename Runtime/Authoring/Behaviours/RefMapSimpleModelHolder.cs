@@ -141,25 +141,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="cloth" />.
                 /// </summary>
-                public ushort Cloth
+                public Tuple<ushort, RefMapItem.ColorCode> Cloth
                 {
-                    get { return cloth; }
+                    get { return new Tuple<ushort, RefMapItem.ColorCode>(cloth, clothColor); }
                     set
                     {
-                        cloth = value;
-                        ChangeCloth(bundle[sex]);
-                    }
-                }
-
-                /// <summary>
-                ///   See <see cref="clothColor" />.
-                /// </summary>
-                public RefMapItem.ColorCode ClothColor
-                {
-                    get { return clothColor; }
-                    set
-                    {
-                        clothColor = value;
+                        cloth = value.Item1;
+                        clothColor = value.Item2;
                         ChangeCloth(bundle[sex]);
                     }
                 }

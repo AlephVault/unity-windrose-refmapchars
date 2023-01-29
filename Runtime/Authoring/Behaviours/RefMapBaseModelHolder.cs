@@ -304,53 +304,29 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
 
                 /// <summary>
-                ///   See <see cref="hair" />.
+                ///   See <see cref="hair" /> and <see cref="hairColor"/>.
                 /// </summary>
-                public ushort Hair
+                public Tuple<ushort, RefMapItem.ColorCode> Hair
                 {
-                    get { return hair; }
+                    get { return new Tuple<ushort, RefMapItem.ColorCode>(hair, hairColor); }
                     set
                     {
-                        hair = value;
+                        hair = value.Item1;
+                        hairColor = value.Item2;
                         ChangeHair(bundle[sex]);
                     }
                 }
-
+                
                 /// <summary>
-                ///   See <see cref="hairColor" />.
+                ///   See <see cref="hat" /> and <see cref="hatColor"/>.
                 /// </summary>
-                public RefMapItem.ColorCode HairColor
+                public Tuple<ushort, RefMapItem.ColorCode> Hat
                 {
-                    get { return hairColor; }
+                    get { return new Tuple<ushort, RefMapItem.ColorCode>(hat, hatColor); }
                     set
                     {
-                        hairColor = value;
-                        ChangeHair(bundle[sex]);
-                    }
-                }
-
-                /// <summary>
-                ///   See <see cref="hat" />.
-                /// </summary>
-                public ushort Hat
-                {
-                    get { return hat; }
-                    set
-                    {
-                        hat = value;
-                        ChangeHat(bundle[sex]);
-                    }
-                }
-
-                /// <summary>
-                ///   See <see cref="hatColor" />.
-                /// </summary>
-                public RefMapItem.ColorCode HatColor
-                {
-                    get { return hatColor; }
-                    set
-                    {
-                        hatColor = value;
+                        hat = value.Item1;
+                        hatColor = value.Item2;
                         ChangeHat(bundle[sex]);
                     }
                 }
