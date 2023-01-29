@@ -173,7 +173,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     if (force) RefreshTexture();
                 }
 
-                protected abstract void RefreshTexture();
+                public abstract void RefreshTexture();
             }
         }
     }

@@ -41,7 +41,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   Gets the grid, and uses it.
                 /// </summary>
-                protected override void RefreshTexture()
+                public override void RefreshTexture()
                 {
                     UseGrid(cache.Get(this));
                 }
