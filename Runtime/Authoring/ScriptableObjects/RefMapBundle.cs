@@ -31,9 +31,19 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     Male,
                     Female
                 }
+
+                /// <summary>
+                ///   The available extra item types.
+                /// </summary>
+                public enum ExtraItemTypeCode
+                {
+                    Necklace,
+                    SkilledHandItem,
+                    DumbHanItem
+                }
                 
                 /// <summary>
-                ///   The dictionary to use (maps a sex code to a <see cref="RefMapSex"/>).
+                ///   The dictionary to use for sex data (maps a sex code to a <see cref="RefMapSex"/>).
                 /// </summary>
                 [Serializable]
                 public class RefMapSexDictionary : Dictionary<SexCode, RefMapSex> {}
@@ -45,16 +55,28 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 private RefMapSexDictionary sexes = new RefMapSexDictionary();
 
                 /// <summary>
-                ///   The bundle's extra data.
+                ///   The dictionary to use for extra items (maps a type code to a <see cref="RefMapExtra"/>).
+                /// </summary>
+                [Serializable]
+                public class RefMapExtraDictionary : Dictionary<ExtraItemTypeCode, RefMapExtra> {}
+
+                /// <summary>
+                ///   A dictionary of the extra types to use in this main bundle.
                 /// </summary>
                 [SerializeField]
-                private RefMapExtra extra;
+                private RefMapExtraDictionary extras = new RefMapExtraDictionary();
                 
                 /// <summary>
-                ///   Gets a <see cref="SexData"/> at a given sex code.
+                ///   Gets a <see cref="RefMapSex"/> at a given sex code.
                 /// </summary>
                 /// <param name="sexCode">The code to retrieve the data for</param>
                 public RefMapSex this[SexCode sexCode] => sexes[sexCode];
+
+                /// <summary>
+                ///   Gets a <see cref="RefMapExtra"/> at a given extra code.
+                /// </summary>
+                /// <param name="extraCode">The code to retrieve the data for</param>
+                public RefMapExtra this[ExtraItemTypeCode extraCode] => extras[extraCode];
                 
                 /// <summary>
                 ///   Gets the available sex data elements in this main bundle.
@@ -104,7 +126,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     
                     // First: Create the bundle and populate it.
                     RefMapBundle bundle = CreateInstance<RefMapBundle>();
-                    bundle.extra = CreateInstance<RefMapExtra>();
                     Populate(
                         "Packages/com.gamemeanmachine.unity.windrose.refmapchars/Runtime/Graphics",
                         bundle
@@ -146,8 +167,11 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         AssetDatabase.CreateAsset(sex, sexPath);
                     }
 
-                    string extraPath = Path.Combine(refmap, "Extra.asset");
-                    AssetDatabase.CreateAsset(bundle.extra, extraPath);
+                    foreach (KeyValuePair<ExtraItemTypeCode, RefMapExtra> extraPair in bundle.extras)
+                    {
+                        string extraPath = Path.Combine(refmap, $"{extraPair.Key}.asset");
+                        AssetDatabase.CreateAsset(extraPair.Value, extraPath);
+                    }
                     
                     string bundlePath = Path.Combine(refmap, "Bundle.asset");
                     AssetDatabase.CreateAsset(bundle, bundlePath);
@@ -169,6 +193,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     RefMapSex.Populate(Path.Combine(path, "Female"), female);
                     main.sexes.Add(SexCode.Male, male);
                     main.sexes.Add(SexCode.Female, female);
+                    RefMapExtra necklaces = CreateInstance<RefMapExtra>();
+                    RefMapExtra skilledHandItems = CreateInstance<RefMapExtra>();
+                    RefMapExtra dumbHandItems = CreateInstance<RefMapExtra>();
+                    main.extras.Add(ExtraItemTypeCode.Necklace, necklaces);
+                    main.extras.Add(ExtraItemTypeCode.SkilledHandItem, skilledHandItems);
+                    main.extras.Add(ExtraItemTypeCode.DumbHanItem, dumbHandItems);
                 }
 #endif
             }

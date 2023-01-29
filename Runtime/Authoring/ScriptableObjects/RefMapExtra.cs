@@ -26,42 +26,24 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             public class RefMapExtra : ScriptableObject
             {
                 /// <summary>
-                ///   The available extra item types.
-                /// </summary>
-                public enum ExtraItemTypeCode
-                {
-                    Necklace,
-                    SkilledHandItem,
-                    DumbHanItem
-                }
-                
-                /// <summary>
-                ///   A sub-dictionary to use (maps a number to an
-                ///   element to represent, where 0 is always to not
+                ///   A dictionary to use (maps a number to an
+                ///   item to represent, where 0 is always to not
                 ///   render any element, so will not be used).
                 /// </summary>
                 [Serializable]
                 public class RefMapExtraItemsDictionary : Dictionary<ushort, RefMapSource> {}
 
                 /// <summary>
-                ///   The dictionary to use (maps an extra item type
-                ///   to a dictionary).
-                /// </summary>
-                [Serializable]
-                public class RefMapExtraItemGroupsDictionary : Dictionary<ExtraItemTypeCode, RefMapExtraItemsDictionary> {}
-            
-                /// <summary>
-                ///   A dictionary of the variations to use for this
-                ///   graphical asset.
+                ///   The items contained in this extra category.
                 /// </summary>
                 [SerializeField]
-                private RefMapExtraItemGroupsDictionary extraItemGroups = new RefMapExtraItemGroupsDictionary();
-
+                private RefMapExtraItemsDictionary items = new RefMapExtraItemsDictionary();
+                
                 /// <summary>
-                ///   Gets a <see cref="RefMapExtraItemsDictionary"/> af a given type.
+                ///   Gets a <see cref="RefMapSource"/> af a given type.
                 /// </summary>
-                /// <param name="extraItemTypeCode">The type to retrieve the extra group for</param>
-                public RefMapExtraItemsDictionary this[ExtraItemTypeCode extraItemTypeCode] => extraItemGroups[extraItemTypeCode];
+                /// <param name="index">The index to retrieve the extra item</param>
+                public RefMapSource this[ushort index] => items[index];
             }
         }
     }    

@@ -15,6 +15,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 [CustomPropertyDrawer(typeof(RefMapItemType.RefMapItemsDictionary))]
                 [CustomPropertyDrawer(typeof(RefMapSex.RefMapItemTypesDictionary))]
                 [CustomPropertyDrawer(typeof(RefMapBundle.RefMapSexDictionary))]
+                [CustomPropertyDrawer(typeof(RefMapBundle.RefMapExtraDictionary))]
+                [CustomPropertyDrawer(typeof(RefMapExtra.RefMapExtraItemsDictionary))]
                 public class RefMapDictionaryPropertyDrawer : DictionaryPropertyDrawer {}
             }
         }
