@@ -47,13 +47,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 
                 private void ChangeCloth(RefMapSex data)
                 {
-                    if (cloth == 0)
+                    ClothTrait clothTrait = null;
+                    if (cloth != Empty)
                     {
-                        DoChangeCloth(null);
-                    }
-                    else
-                    {
-                        ClothTrait clothTrait = null;
                         try
                         {
                             clothTrait = new ClothTrait(
@@ -64,19 +60,11 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeCloth(clothTrait);
+                        applier.Use(clothTrait, false);
                     }
+                    applier.Use((ClothTrait)null, false);
                 }
-
-                /// <summary>
-                ///   Changes the cloth trait.
-                /// </summary>
-                /// <param name="cloth">the cloth trait to use</param>
-                protected void DoChangeCloth(ClothTrait cloth)
-                {
-                    applier.Use(cloth, false);
-                }
-
+                
                 /// <summary>
                 ///   Updates the body trait.
                 /// </summary>

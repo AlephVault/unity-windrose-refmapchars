@@ -129,24 +129,20 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
 
                 private void ChangeHair(RefMapSex data)
                 {
-                    if (hair == Empty)
+                    HairTrait hairTrait = null;
+                    RefMapSource hairTail = null;
+                    if (hair != Empty)
                     {
-                        DoChangeHair(null);
-                    }
-                    else
-                    {
-                        RefMapSource hairTail = null;
                         try
                         {
-                            hairTail = data[RefMapSex.ItemTypeCode.HairTail][hair][hairColor];
-                        }
-                        catch (Exception e)
-                        {
-                        }
-
-                        HairTrait hairTrait = null;
-                        try
-                        {
+                            try
+                            {
+                                hairTail = data[RefMapSex.ItemTypeCode.HairTail][hair][hairColor];
+                            }
+                            catch (Exception e)
+                            {
+                            }
+                            
                             hairTrait = new HairTrait(
                                 $"{sex}{hair}{hairColor}",
                                 data[RefMapSex.ItemTypeCode.Hair][hair][hairColor],
@@ -156,8 +152,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeHair(hairTrait);
                     }
+                    DoChangeHair(hairTrait);
                 }
 
                 /// <summary>
@@ -168,13 +164,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 
                 private void ChangeHat(RefMapSex data)
                 {
-                    if (hat == 0)
+                    HatTrait hatTrait = null;
+                    if (hat != Empty)
                     {
-                        DoChangeHat(null);
-                    }
-                    else
-                    {
-                        HatTrait hatTrait = null;
                         try
                         {
                             hatTrait = new HatTrait(
@@ -185,8 +177,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeHat(hatTrait);
                     }
+                    DoChangeHat(hatTrait);
                 }
 
                 /// <summary>
@@ -197,13 +189,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
 
                 private void ChangeNecklace(RefMapExtra data)
                 {
-                    if (necklace == Empty)
+                    NecklaceTrait necklaceTrait = null;
+                    if (necklace != Empty)
                     {
-                        DoChangeNecklace(null);
-                    }
-                    else
-                    {
-                        NecklaceTrait necklaceTrait = null;
                         try
                         {
                             necklaceTrait = new NecklaceTrait(
@@ -214,8 +202,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeNecklace(necklaceTrait);
                     }
+                    DoChangeNecklace(necklaceTrait);
                 }
 
                 /// <summary>
@@ -226,13 +214,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
 
                 private void ChangeSkilledHandItem(RefMapExtra data)
                 {
-                    if (skilledHandItem == Empty)
+                    SkilledHandItemTrait skilledHandItemTrait = null;
+                    if (skilledHandItem != Empty)
                     {
-                        DoChangeSkilledHandItem(null);
-                    }
-                    else
-                    {
-                        SkilledHandItemTrait skilledHandItemTrait = null;
                         try
                         {
                             skilledHandItemTrait = new SkilledHandItemTrait(
@@ -243,8 +227,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeSkilledHandItem(skilledHandItemTrait);
                     }
+                    DoChangeSkilledHandItem(skilledHandItemTrait);
                 }
 
                 /// <summary>
@@ -255,13 +239,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
 
                 private void ChangeDumbHandItem(RefMapExtra data)
                 {
-                    if (dumbHandItem == Empty)
+                    DumbHandItemTrait dumbHandItemTrait = null;
+                    if (dumbHandItem != Empty)
                     {
-                        DoChangeDumbHandItem(null);
-                    }
-                    else
-                    {
-                        DumbHandItemTrait dumbHandItemTrait = null;
                         try
                         {
                             dumbHandItemTrait = new DumbHandItemTrait(
@@ -272,8 +252,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        DoChangeDumbHandItem(dumbHandItemTrait);
                     }
+                    DoChangeDumbHandItem(dumbHandItemTrait);
                 }
 
                 /// <summary>
