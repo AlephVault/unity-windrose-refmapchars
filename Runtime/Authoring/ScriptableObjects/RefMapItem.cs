@@ -28,6 +28,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   in two different items, but working as a complement
             ///   of each other respectively).
             /// </summary>
+            [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "Wind Rose/RefMap Chars/Standard Item (10 colors variations)", order = 105)]
             public class RefMapItem : ScriptableObject
             {
                 /// <summary>

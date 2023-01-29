@@ -23,6 +23,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   Only 8 variations are allowed. A body belongs
             ///   to a certain sex trait.
             /// </summary>
+            [CreateAssetMenu(fileName = "NewRefMapBody", menuName = "Wind Rose/RefMap Chars/RefMap Body", order = 103)]
             public class RefMapBody : ScriptableObject
             {
                 /// <summary>

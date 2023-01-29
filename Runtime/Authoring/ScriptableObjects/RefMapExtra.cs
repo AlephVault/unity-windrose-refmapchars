@@ -23,6 +23,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   and they do not have variations, but they have.
             ///   some types, like necklaces or items.
             /// </summary>
+            [CreateAssetMenu(fileName = "NewRefMapExtra", menuName = "Wind Rose/RefMap Chars/Extra Items Category (no color variations)", order = 106)]
             public class RefMapExtra : ScriptableObject
             {
                 /// <summary>

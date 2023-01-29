@@ -19,7 +19,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   to assign to prefabs that should access this
             ///   cache to get generate and then get textures).
             /// </summary>
-            [CreateAssetMenu(fileName = "RefMapCache.asset", menuName = "RefMap Chars/Cache")]
+            [CreateAssetMenu(fileName = "NewRefMapCache", menuName = "Wind Rose/RefMap Chars/Cache", order = 107)]
             public class RefMapCache : ScriptableObject
             {
                 /// <summary>

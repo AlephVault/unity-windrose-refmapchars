@@ -21,6 +21,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   This is a full bundle and has two sexes which
             ///   contain all the relevant data.
             /// </summary>
+            [CreateAssetMenu(fileName = "NewRefMapBundle", menuName = "Wind Rose/RefMap Chars/RefMap Bundle", order = 101)]
             public class RefMapBundle : ScriptableObject
             {
                 /// <summary>
@@ -90,7 +91,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
                 
 #if UNITY_EDITOR
-                [MenuItem("Assets/Create/RefMap Chars/Full RefMap Bundle", true, 101)]
+                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Full RefMap Bundle", true, 108)]
                 private static bool CanCreateFullRefMapBundle()
                 {
                     Object obj = Selection.activeObject;
@@ -106,7 +107,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     return AssetDatabase.IsValidFolder(path);
                 }
 
-                [MenuItem("Assets/Create/RefMap Chars/Full RefMap Bundle", false, 101)]
+                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Full RefMap Bundle", false, 108)]
                 private static void CreateFullRefMapBundle()
                 {
                     // Get the selected object.

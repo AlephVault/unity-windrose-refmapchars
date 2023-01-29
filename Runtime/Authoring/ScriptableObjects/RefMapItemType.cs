@@ -19,6 +19,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   (item types) belong to a sex, and contain items
             ///   that are defined within.
             /// </summary>
+            [CreateAssetMenu(fileName = "NewRefMapItemType", menuName = "Wind Rose/RefMap Chars/Standard Items Category (10 colors variations)", order = 104)]
             public class RefMapItemType : ScriptableObject
             {
                 /// <summary>
