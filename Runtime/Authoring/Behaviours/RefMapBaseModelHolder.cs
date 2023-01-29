@@ -89,7 +89,18 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// </summary>
                 [SerializeField]
                 private ushort dumbHandItem = Empty;
-                
+
+                protected virtual void Awake()
+                {
+                    Sex = sex;
+                    BodyColor = bodyColor;
+                    Hair = new Tuple<ushort, RefMapItem.ColorCode>(hair, hairColor);
+                    Hat = new Tuple<ushort, RefMapItem.ColorCode>(hat, hatColor);
+                    Necklace = necklace;
+                    SkilledHandItem = skilledHandItem;
+                    DumbHandItem = dumbHandItem;
+                }
+
                 private void FullUpdate()
                 {
                     FullUpdateFromSex(bundle[sex]);
@@ -311,8 +322,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     get { return new Tuple<ushort, RefMapItem.ColorCode>(hair, hairColor); }
                     set
                     {
-                        hair = value.Item1;
-                        hairColor = value.Item2;
+                        hair = value?.Item1 ?? Empty;
+                        hairColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
                         ChangeHair(bundle[sex]);
                     }
                 }
@@ -325,8 +336,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     get { return new Tuple<ushort, RefMapItem.ColorCode>(hat, hatColor); }
                     set
                     {
-                        hat = value.Item1;
-                        hatColor = value.Item2;
+                        hat = value?.Item1 ?? Empty;
+                        hatColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
                         ChangeHat(bundle[sex]);
                     }
                 }
