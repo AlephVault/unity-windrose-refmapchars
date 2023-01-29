@@ -22,30 +22,30 @@ public class SampleRefMapRotator : MonoBehaviour
 
     private MapObject mapObject;
     private Visual mainVisual;
-    private RefMapStandardApplier applier;
+    private RefMapStandardModelHolder modelHolder;
 
     private int sex = 0; // 0-1
     private int bodyColor = 0; // 0-7
 
-    private int boots = 0;
+    private ushort boots = 0;
     private int bootsColor = 0;
-    private int pants = 0;
+    private ushort pants = 0;
     private int pantsColor = 0;
-    private int waist = 0;
+    private ushort waist = 0;
     private int waistColor = 0;
-    private int shirt = 0;
+    private ushort shirt = 0;
     private int shirtColor = 0;
-    private int hat = 0;
+    private ushort hat = 0;
     private int hatColor = 0;
-    private int hair = 0;
+    private ushort hair = 0;
     private int hairColor = 0;
-    private int longShirt = 0;
+    private ushort longShirt = 0;
     private int longShirtColor = 0;
-    private int arms = 0;
+    private ushort arms = 0;
     private int armsColor = 0;
-    private int chest = 0;
+    private ushort chest = 0;
     private int chestColor = 0;
-    private int shoulder = 0;
+    private ushort shoulder = 0;
     private int shoulderColor = 0;
 
     private bool bootsOverPants = false;
@@ -79,7 +79,7 @@ public class SampleRefMapRotator : MonoBehaviour
     {
         mapObject = GetComponent<MapObject>();
         mainVisual = mapObject.MainVisual;
-        applier = mainVisual.GetComponent<RefMapStandardApplier>();
+        modelHolder = mainVisual.GetComponent<RefMapStandardModelHolder>();
     }
 
     private void Start()
@@ -130,173 +130,19 @@ public class SampleRefMapRotator : MonoBehaviour
         
         // Now, applying everything will take place.
         
-        // Body
-        RefMapSource bodySource = bundle[
-            sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-        ].Body[(RefMapBody.ColorCode) bodyColor];
-        applier.Use((new BodyTrait($"{sex}{bodyColor}", bodySource)), false);
-        
-        // Boots
-        if (boots == 0)
-        {
-            applier.Use((BootsTrait)null, false);
-        }
-        else
-        {
-            RefMapSource bootsSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Boots
-            ][(ushort) boots][(RefMapItem.ColorCode) bootsColor];
-            applier.Use(new BootsTrait($"{sex}{boots}{bootsColor}", bootsSource), false);
-        }
-        
-        // Pants
-        if (pants == 0)
-        {
-            applier.Use((PantsTrait)null, false);
-        }
-        else
-        {
-            RefMapSource pantsSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Pants
-            ][(ushort) pants][(RefMapItem.ColorCode) pantsColor];
-            applier.Use(new PantsTrait($"{sex}{pants}{pantsColor}", pantsSource), false);
-        }
-        
-        // Waist
-        if (waist == 0)
-        {
-            applier.Use((WaistTrait)null, false);
-        }
-        else
-        {
-            RefMapSource waistSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Waist
-            ][(ushort) waist][(RefMapItem.ColorCode) waistColor];
-            applier.Use(new WaistTrait($"{sex}{waist}{waistColor}", waistSource), false);
-        }
-        
-        // Shirt
-        if (shirt == 0)
-        {
-            applier.Use((ShirtTrait)null, false);
-        }
-        else
-        {
-            RefMapSource shirtSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Shirt
-            ][(ushort) shirt][(RefMapItem.ColorCode) shirtColor];
-            applier.Use(new ShirtTrait($"{sex}{shirt}{shirtColor}", shirtSource), false);
-        }
-        
-        // Chest
-        if (chest == 0)
-        {
-            applier.Use((ChestTrait)null, false);
-        }
-        else
-        {
-            RefMapSource chestSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Chest
-            ][(ushort) chest][(RefMapItem.ColorCode) chestColor];
-            applier.Use(new ChestTrait($"{sex}{chest}{chestColor}", chestSource), false);
-        }
-        
-        // LongShirt
-        if (longShirt == 0)
-        {
-            applier.Use((LongShirtTrait)null, false);
-        }
-        else
-        {
-            RefMapSource longShirtSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.LongShirt
-            ][(ushort) longShirt][(RefMapItem.ColorCode) longShirtColor];
-            applier.Use(new LongShirtTrait($"{sex}{longShirt}{longShirtColor}", longShirtSource), false);
-        }
-        
-        // Shoulder
-        if (shoulder == 0)
-        {
-            applier.Use((ShoulderTrait)null, false);
-        }
-        else
-        {
-            RefMapSource shoulderSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Shoulder
-            ][(ushort) shoulder][(RefMapItem.ColorCode) shoulderColor];
-            applier.Use(new ShoulderTrait($"{sex}{shoulder}{shoulderColor}", shoulderSource), false);
-        }
-        
-        // Arms
-        if (arms == 0)
-        {
-            applier.Use((ArmsTrait)null, false);
-        }
-        else
-        {
-            RefMapSource armsSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Arms
-            ][(ushort) arms][(RefMapItem.ColorCode) armsColor];
-            applier.Use(new ArmsTrait($"{sex}{arms}{armsColor}", armsSource), false);
-        }
-        
-        // Hat
-        if (hat == 0)
-        {
-            applier.Use((HatTrait)null, false);
-        }
-        else
-        {
-            RefMapSource hatSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Hat
-            ][(ushort) hat][(RefMapItem.ColorCode) hatColor];
-            applier.Use(new HatTrait($"{sex}{hat}{hatColor}", hatSource), false);
-        }
-        
-        // Hair - This one is a bit different
-        if (hair == 0)
-        {
-            applier.Use((HairTrait)null);
-        }
-        else
-        {
-            RefMapSource hairSource = bundle[
-                sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-            ][
-                RefMapSex.ItemTypeCode.Hair
-            ][(ushort) hair][(RefMapItem.ColorCode) hairColor];
-            RefMapSource hairTailSource = null;
-            try
-            {
-                hairTailSource = bundle[
-                    sex == 0 ? RefMapBundle.SexCode.Male : RefMapBundle.SexCode.Female
-                ][
-                    RefMapSex.ItemTypeCode.HairTail
-                ][(ushort) hair][(RefMapItem.ColorCode) hairColor];
-            }
-            catch (System.Exception e)
-            {
-            }
-            applier.Use(new HairTrait($"{sex}{hair}{hairColor}", hairSource, hairTailSource));
-        }
+        modelHolder.BodyColor = (RefMapBody.ColorCode) bodyColor;
+        modelHolder.Boots = new Tuple<ushort, RefMapItem.ColorCode>(boots, (RefMapItem.ColorCode)bootsColor);
+        modelHolder.Pants = new Tuple<ushort, RefMapItem.ColorCode>(pants, (RefMapItem.ColorCode)pantsColor);
+        modelHolder.Waist = new Tuple<ushort, RefMapItem.ColorCode>(waist, (RefMapItem.ColorCode)waistColor);
+        modelHolder.Shirt = new Tuple<ushort, RefMapItem.ColorCode>(shirt, (RefMapItem.ColorCode)shirtColor);
+        modelHolder.Chest = new Tuple<ushort, RefMapItem.ColorCode>(chest, (RefMapItem.ColorCode)chestColor);
+        modelHolder.LongShirt = new Tuple<ushort, RefMapItem.ColorCode>(longShirt, (RefMapItem.ColorCode)longShirtColor);
+        modelHolder.Shoulder = new Tuple<ushort, RefMapItem.ColorCode>(shoulder, (RefMapItem.ColorCode)shoulderColor);
+        modelHolder.Arms = new Tuple<ushort, RefMapItem.ColorCode>(arms, (RefMapItem.ColorCode)armsColor);
+        modelHolder.Hat = new Tuple<ushort, RefMapItem.ColorCode>(hat, (RefMapItem.ColorCode)hatColor);
+        // This example does not have Cloak.
+        modelHolder.Hair = new Tuple<ushort, RefMapItem.ColorCode>(hair, (RefMapItem.ColorCode)hairColor);
+        modelHolder.RefreshTexture();
     }
 
     private void Update()
@@ -431,6 +277,7 @@ public class SampleRefMapRotator : MonoBehaviour
         {
             // Toggle Sex
             sex = 1 - sex;
+            modelHolder.Sex = (RefMapBundle.SexCode)sex;
             FixIndicesAndUpdate();
         }
         if (Input.GetKeyDown(KeyCode.B))

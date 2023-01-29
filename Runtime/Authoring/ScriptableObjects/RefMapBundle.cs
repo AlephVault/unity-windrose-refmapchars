@@ -186,7 +186,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="main">The main bundle to read into</param>
                 internal static void Populate(string path, RefMapBundle main)
                 {
-                    Debug.Log($"Path is: {path}");
                     RefMapSex male = CreateInstance<RefMapSex>();
                     RefMapSex female = CreateInstance<RefMapSex>();
                     RefMapSex.Populate(Path.Combine(path, "Male"), male);
@@ -196,6 +195,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     RefMapExtra necklaces = CreateInstance<RefMapExtra>();
                     RefMapExtra skilledHandItems = CreateInstance<RefMapExtra>();
                     RefMapExtra dumbHandItems = CreateInstance<RefMapExtra>();
+                    RefMapExtra cloaks = CreateInstance<RefMapExtra>();
                     main.extras.Add(ExtraItemTypeCode.Necklace, necklaces);
                     main.extras.Add(ExtraItemTypeCode.SkilledHandItem, skilledHandItems);
                     main.extras.Add(ExtraItemTypeCode.DumbHanItem, dumbHandItems);

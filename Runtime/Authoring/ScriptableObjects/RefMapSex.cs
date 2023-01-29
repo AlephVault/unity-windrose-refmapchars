@@ -42,7 +42,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     Cloth,
                     Hair,
                     HairTail,
-                    Hat
+                    Hat,
+                    Cloak
                 }
             
                 /// <summary>
@@ -107,7 +108,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     sex.body = body;
                     foreach (ItemTypeCode code in Enum.GetValues(typeof(ItemTypeCode)))
                     {
-                        if (code == ItemTypeCode.Hair || code == ItemTypeCode.HairTail) continue;
+                        if (code == ItemTypeCode.Hair || code == ItemTypeCode.HairTail ||
+                            code == ItemTypeCode.Cloak) continue;
                         RefMapItemType itemType = CreateInstance<RefMapItemType>();
                         if (code != ItemTypeCode.Cloth)
                         {
@@ -120,9 +122,11 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     }
                     RefMapItemType hairType = CreateInstance<RefMapItemType>();
                     RefMapItemType hairTailType = CreateInstance<RefMapItemType>();
+                    RefMapItemType cloakType = CreateInstance<RefMapItemType>();
                     RefMapItemType.Populate(Path.Combine(path, "Hair"), hairType, hairTailType);
                     sex.itemTypes.Add(ItemTypeCode.Hair, hairType);
                     sex.itemTypes.Add(ItemTypeCode.HairTail, hairTailType);
+                    sex.itemTypes.Add(ItemTypeCode.Cloak, cloakType);
                 }
 #endif
             }

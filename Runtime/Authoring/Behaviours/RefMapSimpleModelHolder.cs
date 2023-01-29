@@ -33,10 +33,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 [SerializeField]
                 private RefMapItem.ColorCode clothColor = RefMapItem.ColorCode.Black;
                 
-                protected override void Awake()
+                protected virtual void Awake()
                 {
                     applier = GetComponent<RefMapSimpleApplier>();
-                    base.Awake();
                 }
 
                 protected override void FullUpdateFromSex(RefMapSex data)
@@ -128,7 +127,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
 
                 /// <summary>
-                ///   See <see cref="cloth" />.
+                ///   See <see cref="cloth" /> and <see cref="clothColor" />.
                 /// </summary>
                 public Tuple<ushort, RefMapItem.ColorCode> Cloth
                 {

@@ -21,7 +21,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///     them have up to 10 color variations.
             ///   - Extra items have no color.
             /// </summary>
-            [RequireComponent(typeof(RefMapSimpleApplier))]
             public abstract class RefMapBaseModelHolder : MonoBehaviour
             {
                 /// <summary>
@@ -90,15 +89,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 [SerializeField]
                 private ushort dumbHandItem = Empty;
 
-                protected virtual void Awake()
+                protected virtual void Start()
                 {
                     Sex = sex;
-                    BodyColor = bodyColor;
-                    Hair = new Tuple<ushort, RefMapItem.ColorCode>(hair, hairColor);
-                    Hat = new Tuple<ushort, RefMapItem.ColorCode>(hat, hatColor);
                     Necklace = necklace;
                     SkilledHandItem = skilledHandItem;
                     DumbHandItem = dumbHandItem;
+                    RefreshTexture();
                 }
 
                 private void FullUpdate()
@@ -295,7 +292,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
 
                 /// <summary>
-                ///   See <see cref="hair" /> and <see cref="hairColor"/>.
+                ///   See <see cref="hair" /> and <see cref="hairColor" />.
                 /// </summary>
                 public Tuple<ushort, RefMapItem.ColorCode> Hair
                 {
@@ -309,7 +306,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
                 
                 /// <summary>
-                ///   See <see cref="hat" /> and <see cref="hatColor"/>.
+                ///   See <see cref="hat" /> and <see cref="hatColor" />.
                 /// </summary>
                 public Tuple<ushort, RefMapItem.ColorCode> Hat
                 {

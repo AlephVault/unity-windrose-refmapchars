@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed490efddab1419fb20083e1dc9c4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  bundle: {fileID: 0}
   moves: 1
 --- !u!1 &832018496
 GameObject:
@@ -1139,6 +1139,7 @@ GameObject:
   - component: {fileID: 1143659137}
   - component: {fileID: 1143659142}
   - component: {fileID: 1143659141}
+  - component: {fileID: 1143659143}
   m_Layer: 0
   m_Name: StatueVisual
   m_TagString: Untagged
@@ -1277,6 +1278,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aaeeca7846845b6a928697374c44aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1143659143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143659135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ef4683fdce4da1a0ca4b1945f9b8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  sex: 0
+  bodyColor: 6
+  hair: 0
+  hairColor: 0
+  hat: 0
+  hatColor: 0
+  necklace: 0
+  skilledHandItem: 0
+  dumbHandItem: 0
+  boots: 0
+  bootsColor: 0
+  pants: 0
+  pantsColor: 0
+  shirt: 0
+  shirtColor: 0
+  chest: 0
+  chestColor: 0
+  waist: 0
+  waistColor: 0
+  arms: 0
+  armsColor: 0
+  longShirt: 0
+  longShirtColor: 0
+  shoulder: 0
+  shoulderColor: 0
+  cloak: 0
+  cloakColor: 0
 --- !u!1 &1182114542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1418,7 @@ GameObject:
   - component: {fileID: 1332156344}
   - component: {fileID: 1332156352}
   - component: {fileID: 1332156351}
+  - component: {fileID: 1332156353}
   m_Layer: 0
   m_Name: CharacterVisual
   m_TagString: Untagged
@@ -1555,6 +1597,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ac1fe3f838499a8cd3f5ee2d20068c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1332156353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332156342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ef4683fdce4da1a0ca4b1945f9b8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  sex: 0
+  bodyColor: 6
+  hair: 0
+  hairColor: 0
+  hat: 0
+  hatColor: 0
+  necklace: 0
+  skilledHandItem: 0
+  dumbHandItem: 0
+  boots: 0
+  bootsColor: 0
+  pants: 0
+  pantsColor: 0
+  shirt: 0
+  shirtColor: 0
+  chest: 0
+  chestColor: 0
+  waist: 0
+  waistColor: 0
+  arms: 0
+  armsColor: 0
+  longShirt: 0
+  longShirtColor: 0
+  shoulder: 0
+  shoulderColor: 0
+  cloak: 0
+  cloakColor: 0
 --- !u!1 &1412942803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed490efddab1419fb20083e1dc9c4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  bundle: {fileID: 0}
   moves: 0
 --- !u!1 &2041746000
 GameObject:
