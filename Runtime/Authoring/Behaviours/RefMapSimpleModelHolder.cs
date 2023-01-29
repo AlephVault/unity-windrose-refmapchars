@@ -1,5 +1,6 @@
 using System;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Simple;
 using UnityEngine;
@@ -138,6 +139,21 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         clothColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
                         ChangeCloth(bundle[sex]);
                     }
+                }
+
+                /// <summary>
+                ///   Applies an entire bulk (typically, differential)
+                ///   of settings to this holder.
+                /// </summary>
+                /// <param name="model">The model to apply</param>
+                public override bool BulkApply(IRefMapBaseModel model)
+                {
+                    if (!base.BulkApply(model) || !(model is IRefMapSimpleModel simpleModel))
+                    {
+                        return false;
+                    }
+                    if (simpleModel.Cloth != null) Cloth = simpleModel.Cloth;
+                    return true;
                 }
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;
 using UnityEngine;
@@ -505,6 +506,29 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         cloakColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
                         ChangeCloak(bundle[sex]);
                     }
+                }
+
+                /// <summary>
+                ///   Applies an entire bulk (typically, differential)
+                ///   of settings to this holder.
+                /// </summary>
+                /// <param name="model">The model to apply</param>
+                public override bool BulkApply(IRefMapBaseModel model)
+                {
+                    if (!base.BulkApply(model) || !(model is IRefMapStandardModel standardModel))
+                    {
+                        return false;
+                    }
+                    if (standardModel.Boots != null) Boots = standardModel.Boots;
+                    if (standardModel.Pants != null) Pants = standardModel.Pants;
+                    if (standardModel.Shirt != null) Shirt = standardModel.Shirt;
+                    if (standardModel.Chest != null) Chest = standardModel.Chest;
+                    if (standardModel.Waist != null) Waist = standardModel.Waist;
+                    if (standardModel.Arms != null) Arms = standardModel.Arms;
+                    if (standardModel.LongShirt != null) LongShirt = standardModel.LongShirt;
+                    if (standardModel.Shoulder != null) Shoulder = standardModel.Shoulder;
+                    if (standardModel.Cloak != null) Cloak = standardModel.Cloak;
+                    return true;
                 }
             }
         }

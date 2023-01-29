@@ -357,6 +357,25 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         ChangeDumbHandItem(bundle[RefMapBundle.ExtraItemTypeCode.DumbHanItem]);
                     }
                 }
+
+                /// <summary>
+                ///   Applies an entire bulk (typically, differential)
+                ///   of settings to this holder.
+                /// </summary>
+                /// <param name="model">The model to apply</param>
+                /// <returns>Whether the model was applied or not</returns>
+                public virtual bool BulkApply(IRefMapBaseModel model)
+                {
+                    if (model == null) return false;
+                    if (model.Sex != null) Sex = model.Sex.Value;
+                    if (model.BodyColor != null) BodyColor = model.BodyColor.Value;
+                    if (model.Necklace != null) Necklace = model.Necklace.Value;
+                    if (model.SkilledHandItem != null) SkilledHandItem = model.SkilledHandItem.Value;
+                    if (model.DumbHandItem != null) DumbHandItem = model.DumbHandItem.Value;
+                    if (model.Hair != null) Hair = model.Hair;
+                    if (model.Hat != null) Hat = model.Hat;
+                    return true;
+                }
             }
         }
     }
