@@ -3,6 +3,7 @@ using AlephVault.Unity.SpriteUtils.Types;
 using AlephVault.Unity.TextureUtils.Types;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Core;
 using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
+using Unity.Collections;
 using UnityEngine;
 
 
@@ -107,6 +108,21 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 private const int TextureHeight = 192;
                 private const int FrameWidth = 32;
                 private const int FrameHeight = 48;
+                private const int DirectionSize = TextureWidth * FrameHeight;
+                private const int AntiBleedBufferSize = TextureWidth * 2;
+                private const int AntiBleedDirectionSize = DirectionSize + AntiBleedBufferSize;
+                private static Color32[] bleedingBuffer = InitAntiBleedingBuffer();
+
+                private static Color32[] InitAntiBleedingBuffer()
+                {
+                    Color32[] buffer = new Color32[AntiBleedBufferSize];
+                    for (int i = 0; i < AntiBleedBufferSize; i++)
+                    {
+                        buffer[i] = new Color32(0, 0, 0, 0);
+                    }
+
+                    return buffer;
+                }
                 
                 private Texture2D ToTexture2D(RenderTexture rTex)
                 {
@@ -117,14 +133,36 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     tex.Apply();
                     return tex;
                 }
+                
+                private Texture2D FixBleeding(Texture2D sourceTexture)
+                {
+                    Texture2D fixedImage = new Texture2D(
+                        TextureWidth, TextureHeight + 8, finalFormat, 
+                        false
+                    );
+                    NativeArray<Color32> sourcePixels = sourceTexture.GetPixelData<Color32>(0);
+                    NativeArray<Color32> fixedPixels = fixedImage.GetPixelData<Color32>(0);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        fixedPixels.Slice(i * AntiBleedDirectionSize, DirectionSize).CopyFrom(
+                            sourcePixels.Slice(i * DirectionSize, DirectionSize)
+                        );
+                        fixedPixels.Slice(i * AntiBleedDirectionSize + DirectionSize, AntiBleedBufferSize).CopyFrom(
+                            bleedingBuffer
+                        );
+                    }
+                    fixedImage.Apply();
+                    return fixedImage;
+                }
 
                 private SpriteGrid GridFromTexture(string key, Func<Texture2D> onAbsent)
                 {
                     Texture2D usedTexture = texturePool.Use(key, onAbsent, (t) => Destroy(t));
                     return spritePool.Get(key, () =>
                     {
-                        return new Tuple<Texture2D, Rect?, uint, uint, float, Action, Action>(
-                            usedTexture, null, FrameWidth, FrameHeight, pixelsPerUnit, () => {}, () =>
+                        return new Tuple<Texture2D, Rect?, Size2D, Size2D, float, Action, Action>(
+                            usedTexture, null, new Size2D { Width = FrameWidth, Height = FrameHeight},
+                            new Size2D { Width = 0, Height = 2 }, pixelsPerUnit, () => {}, () =>
                             {
                                 texturePool?.Release(key);
                             }
@@ -145,24 +183,24 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         if (UseHardwareAcceleration)
                         {
                             RenderTexture target = new RenderTexture(
-                                TextureWidth, TextureHeight, renderDepth, renderFormat
+                                TextureWidth, TextureHeight, renderDepth, renderFormat, 0
                             );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return ToTexture2D(target);
+                            return FixBleeding(ToTexture2D(target));
                         }
                         else
                         {
-                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);                            
+                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return target;
+                            return FixBleeding(target);
                         }
                     });
                 }
-
+                
                 /// <summary>
                 ///   Gets the sprite grid associated to a simple composite. It is
                 ///   recommended to use the resulting grid as quick as possible.
@@ -176,20 +214,20 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         if (UseHardwareAcceleration)
                         {
                             RenderTexture target = new RenderTexture(
-                                TextureWidth, TextureHeight, renderDepth, renderFormat
+                                TextureWidth, TextureHeight, renderDepth, renderFormat, 0
                             );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return ToTexture2D(target);
+                            return FixBleeding(ToTexture2D(target));
                         }
                         else
                         {
-                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);                            
+                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return target;
+                            return FixBleeding(target);
                         }
                     });
                 }
