@@ -89,6 +89,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// </summary>
                 [SerializeField]
                 private Texture2D maskU;
+
+                /// <summary>
+                ///   Tells whether to compose new textures using hardware
+                ///   acceleration or not.
+                /// </summary>
+                public bool UseHardwareAcceleration;
                 
                 // The texture pool for this cache.
                 private TexturePool<string, Texture2D> texturePool;
@@ -136,13 +142,24 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 {
                     return GridFromTexture(composite.Hash(), () =>
                     {
-                        RenderTexture target = new RenderTexture(
-                            TextureWidth, TextureHeight, renderDepth, renderFormat
-                        );
-                        RefMapUtils.Paste(
-                            target, composite, maskD, maskLRU, maskLR, maskU
-                        );
-                        return ToTexture2D(target);
+                        if (UseHardwareAcceleration)
+                        {
+                            RenderTexture target = new RenderTexture(
+                                TextureWidth, TextureHeight, renderDepth, renderFormat
+                            );
+                            RefMapUtils.Paste(
+                                target, composite, maskD, maskLRU, maskLR, maskU
+                            );
+                            return ToTexture2D(target);
+                        }
+                        else
+                        {
+                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);                            
+                            RefMapUtils.Paste(
+                                target, composite, maskD, maskLRU, maskLR, maskU
+                            );
+                            return target;
+                        }
                     });
                 }
 
@@ -156,13 +173,24 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 {
                     return GridFromTexture(composite.Hash(), () =>
                     {
-                        RenderTexture target = new RenderTexture(
-                            TextureWidth, TextureHeight, renderDepth, renderFormat
-                        );
-                        RefMapUtils.Paste(
-                            target, composite, maskD, maskLRU, maskLR, maskU
-                        );
-                        return ToTexture2D(target);
+                        if (UseHardwareAcceleration)
+                        {
+                            RenderTexture target = new RenderTexture(
+                                TextureWidth, TextureHeight, renderDepth, renderFormat
+                            );
+                            RefMapUtils.Paste(
+                                target, composite, maskD, maskLRU, maskLR, maskU
+                            );
+                            return ToTexture2D(target);
+                        }
+                        else
+                        {
+                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);                            
+                            RefMapUtils.Paste(
+                                target, composite, maskD, maskLRU, maskLR, maskU
+                            );
+                            return target;
+                        }
                     });
                 }
                 
