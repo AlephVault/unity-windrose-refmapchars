@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Male_Pants
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 01000200030004000500
     m_values:
-    - {fileID: 11400000, guid: e21e04c658e67ca5c823db57fb0b3710, type: 2}
-    - {fileID: 11400000, guid: 3a0dc0a85caf7c57caece862365a48c7, type: 2}
-    - {fileID: 11400000, guid: 42c46bfe38d586d98ba3e0ac08629f7d, type: 2}
-    - {fileID: 11400000, guid: 61f7f44e556aed363b4f3a854dd8beef, type: 2}
-    - {fileID: 11400000, guid: ae148e4a82ebcdfd3b50b7e2d5e3a732, type: 2}
+    - {fileID: 11400000, guid: 476ed56df50a247848dd1791d0eb7322, type: 2}
+    - {fileID: 11400000, guid: 5572f09d5a9163001bbc23c98f721684, type: 2}
+    - {fileID: 11400000, guid: e2b9774317366868c845fe96916aa5d3, type: 2}
+    - {fileID: 11400000, guid: 21cd2afaeb7d5972ba848d9282929d49, type: 2}
+    - {fileID: 11400000, guid: c7d33bff11943a2a58f4456e82ccb0fb, type: 2}

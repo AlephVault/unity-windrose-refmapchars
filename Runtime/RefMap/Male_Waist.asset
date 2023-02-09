@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Male_Waist
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 0100020003000400
     m_values:
-    - {fileID: 11400000, guid: c311e1757ff659efa85a3631c429519b, type: 2}
-    - {fileID: 11400000, guid: 75d958e1e509553e18e58646cd9e91ad, type: 2}
-    - {fileID: 11400000, guid: 0984c2d77d1013838904646d9c85ea96, type: 2}
-    - {fileID: 11400000, guid: c0d8c4918d7b015feadc7f185f1d32b5, type: 2}
+    - {fileID: 11400000, guid: 2f37788e2b8727dc2a629c6c4b06e0ce, type: 2}
+    - {fileID: 11400000, guid: 235bb6c5a6ece85d99a368fb17de8cd7, type: 2}
+    - {fileID: 11400000, guid: 04648c1d577a6d34187623aa3489f44e, type: 2}
+    - {fileID: 11400000, guid: 17e16a3e8cffd0e8083032c0b46358bd, type: 2}

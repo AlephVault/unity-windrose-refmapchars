@@ -15,47 +15,47 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             /// <summary>
             ///   Data of the boots to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Boots { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Boots { get; }
             
             /// <summary>
             ///   Data of the pants to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Pants { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Pants { get; }
             
             /// <summary>
             ///   Data of the shirt to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Shirt { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Shirt { get; }
             
             /// <summary>
             ///   Data of the chest to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Chest { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Chest { get; }
             
             /// <summary>
             ///   Data of the waist to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Waist { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Waist { get; }
             
             /// <summary>
             ///   Data of the arms to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Arms { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Arms { get; }
             
             /// <summary>
             ///   Data of the waist to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> LongShirt { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> LongShirt { get; }
             
             /// <summary>
             ///   Data of the shoulder to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Shoulder { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Shoulder { get; }
             
             /// <summary>
             ///   Data of the cloak to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Cloak { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Cloak { get; }
         }
     }
 }

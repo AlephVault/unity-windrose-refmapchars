@@ -15,9 +15,6 @@ using Exception = GameMeanMachine.Unity.WindRose.Types.Exception;
 public class SampleRefMapRotator : MonoBehaviour
 {
     [SerializeField]
-    private RefMapBundle bundle;
-
-    [SerializeField]
     private bool moves;
 
     private MapObject mapObject;
@@ -131,17 +128,17 @@ public class SampleRefMapRotator : MonoBehaviour
         // Now, applying everything will take place.
         
         modelHolder.BodyColor = (RefMapBody.ColorCode) bodyColor;
-        modelHolder.Boots = new Tuple<ushort, RefMapItem.ColorCode>(boots, (RefMapItem.ColorCode)bootsColor);
-        modelHolder.Pants = new Tuple<ushort, RefMapItem.ColorCode>(pants, (RefMapItem.ColorCode)pantsColor);
-        modelHolder.Waist = new Tuple<ushort, RefMapItem.ColorCode>(waist, (RefMapItem.ColorCode)waistColor);
-        modelHolder.Shirt = new Tuple<ushort, RefMapItem.ColorCode>(shirt, (RefMapItem.ColorCode)shirtColor);
-        modelHolder.Chest = new Tuple<ushort, RefMapItem.ColorCode>(chest, (RefMapItem.ColorCode)chestColor);
-        modelHolder.LongShirt = new Tuple<ushort, RefMapItem.ColorCode>(longShirt, (RefMapItem.ColorCode)longShirtColor);
-        modelHolder.Shoulder = new Tuple<ushort, RefMapItem.ColorCode>(shoulder, (RefMapItem.ColorCode)shoulderColor);
-        modelHolder.Arms = new Tuple<ushort, RefMapItem.ColorCode>(arms, (RefMapItem.ColorCode)armsColor);
-        modelHolder.Hat = new Tuple<ushort, RefMapItem.ColorCode>(hat, (RefMapItem.ColorCode)hatColor);
+        modelHolder.Boots = new Tuple<ushort, RefMapAddOn.ColorCode>(boots, (RefMapAddOn.ColorCode)bootsColor);
+        modelHolder.Pants = new Tuple<ushort, RefMapAddOn.ColorCode>(pants, (RefMapAddOn.ColorCode)pantsColor);
+        modelHolder.Waist = new Tuple<ushort, RefMapAddOn.ColorCode>(waist, (RefMapAddOn.ColorCode)waistColor);
+        modelHolder.Shirt = new Tuple<ushort, RefMapAddOn.ColorCode>(shirt, (RefMapAddOn.ColorCode)shirtColor);
+        modelHolder.Chest = new Tuple<ushort, RefMapAddOn.ColorCode>(chest, (RefMapAddOn.ColorCode)chestColor);
+        modelHolder.LongShirt = new Tuple<ushort, RefMapAddOn.ColorCode>(longShirt, (RefMapAddOn.ColorCode)longShirtColor);
+        modelHolder.Shoulder = new Tuple<ushort, RefMapAddOn.ColorCode>(shoulder, (RefMapAddOn.ColorCode)shoulderColor);
+        modelHolder.Arms = new Tuple<ushort, RefMapAddOn.ColorCode>(arms, (RefMapAddOn.ColorCode)armsColor);
+        modelHolder.Hat = new Tuple<ushort, RefMapAddOn.ColorCode>(hat, (RefMapAddOn.ColorCode)hatColor);
         // This example does not have Cloak.
-        modelHolder.Hair = new Tuple<ushort, RefMapItem.ColorCode>(hair, (RefMapItem.ColorCode)hairColor);
+        modelHolder.Hair = new Tuple<ushort, RefMapAddOn.ColorCode>(hair, (RefMapAddOn.ColorCode)hairColor);
         modelHolder.RefreshTexture();
     }
 

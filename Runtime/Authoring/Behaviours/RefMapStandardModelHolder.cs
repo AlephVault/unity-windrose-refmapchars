@@ -32,7 +32,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The boots color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode bootsColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode bootsColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The pants. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -44,7 +44,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The pants color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode pantsColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode pantsColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The shirt. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -56,7 +56,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The shirt color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode shirtColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode shirtColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The chest. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -68,7 +68,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The chest color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode chestColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode chestColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The waist. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -80,7 +80,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The waist color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode waistColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode waistColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The arms. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -92,7 +92,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The arms color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode armsColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode armsColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The long shirt. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -104,7 +104,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The long shirt color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode longShirtColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode longShirtColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The shoulder. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -116,7 +116,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The shoulder color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode shoulderColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode shoulderColor = RefMapAddOn.ColorCode.Black;
                 
                 /// <summary>
                 ///   The cloak. Use <see cref="RefMapBaseModelHolder.Empty" /> to clear it out.
@@ -128,7 +128,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The cloak color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode cloakColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode cloakColor = RefMapAddOn.ColorCode.Black;
 
                 protected virtual void Awake()
                 {
@@ -220,7 +220,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             bootsTrait = new BootsTrait(
                                 $"{sex}{boots}{bootsColor}",
-                                data[RefMapSex.ItemTypeCode.Boots][boots][bootsColor]
+                                data[RefMapSex.AddOnTypeCode.Boots][boots][bootsColor]
                             );
                         }
                         catch (Exception e)
@@ -233,13 +233,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="boots" /> and <see cref="bootsColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Boots
+                public Tuple<ushort, RefMapAddOn.ColorCode> Boots
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(boots, bootsColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(boots, bootsColor); }
                     set
                     {
                         boots = value?.Item1 ?? Empty;
-                        bootsColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        bootsColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeBoots(bundle[sex]);
                     }
                 }
@@ -253,7 +253,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             pantsTrait = new PantsTrait(
                                 $"{sex}{pants}{pantsColor}",
-                                data[RefMapSex.ItemTypeCode.Pants][pants][pantsColor]
+                                data[RefMapSex.AddOnTypeCode.Pants][pants][pantsColor]
                             );
                         }
                         catch (Exception e)
@@ -266,13 +266,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="pants" /> and <see cref="pantsColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Pants
+                public Tuple<ushort, RefMapAddOn.ColorCode> Pants
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(pants, pantsColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(pants, pantsColor); }
                     set
                     {
                         pants = value?.Item1 ?? Empty;
-                        pantsColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        pantsColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangePants(bundle[sex]);
                     }
                 }
@@ -286,7 +286,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             shirtTrait = new ShirtTrait(
                                 $"{sex}{shirt}{shirtColor}",
-                                data[RefMapSex.ItemTypeCode.Shirt][shirt][shirtColor]
+                                data[RefMapSex.AddOnTypeCode.Shirt][shirt][shirtColor]
                             );
                         }
                         catch (Exception e)
@@ -299,13 +299,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="shirt" /> and <see cref="shirtColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Shirt
+                public Tuple<ushort, RefMapAddOn.ColorCode> Shirt
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(shirt, shirtColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(shirt, shirtColor); }
                     set
                     {
                         shirt = value?.Item1 ?? Empty;
-                        shirtColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        shirtColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeShirt(bundle[sex]);
                     }
                 }
@@ -319,7 +319,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             chestTrait = new ChestTrait(
                                 $"{sex}{chest}{chestColor}",
-                                data[RefMapSex.ItemTypeCode.Chest][chest][chestColor]
+                                data[RefMapSex.AddOnTypeCode.Chest][chest][chestColor]
                             );
                         }
                         catch (Exception e)
@@ -332,13 +332,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="chest" /> and <see cref="chestColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Chest
+                public Tuple<ushort, RefMapAddOn.ColorCode> Chest
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(chest, chestColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(chest, chestColor); }
                     set
                     {
                         chest = value?.Item1 ?? Empty;
-                        chestColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        chestColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeChest(bundle[sex]);
                     }
                 }
@@ -352,7 +352,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             waistTrait = new WaistTrait(
                                 $"{sex}{waist}{waistColor}",
-                                data[RefMapSex.ItemTypeCode.Waist][waist][waistColor]
+                                data[RefMapSex.AddOnTypeCode.Waist][waist][waistColor]
                             );
                         }
                         catch (Exception e)
@@ -365,13 +365,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="waist" /> and <see cref="waistColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Waist
+                public Tuple<ushort, RefMapAddOn.ColorCode> Waist
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(waist, waistColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(waist, waistColor); }
                     set
                     {
                         waist = value?.Item1 ?? Empty;
-                        waistColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        waistColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeWaist(bundle[sex]);
                     }
                 }
@@ -385,7 +385,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             armsTrait = new ArmsTrait(
                                 $"{sex}{arms}{armsColor}",
-                                data[RefMapSex.ItemTypeCode.Arms][arms][armsColor]
+                                data[RefMapSex.AddOnTypeCode.Arms][arms][armsColor]
                             );
                         }
                         catch (Exception e)
@@ -398,13 +398,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="arms" /> and <see cref="armsColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Arms
+                public Tuple<ushort, RefMapAddOn.ColorCode> Arms
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(arms, armsColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(arms, armsColor); }
                     set
                     {
                         arms = value?.Item1 ?? Empty;
-                        armsColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        armsColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeArms(bundle[sex]);
                     }
                 }
@@ -418,7 +418,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             longShirtTrait = new LongShirtTrait(
                                 $"{sex}{longShirt}{longShirtColor}",
-                                data[RefMapSex.ItemTypeCode.LongShirt][longShirt][longShirtColor]
+                                data[RefMapSex.AddOnTypeCode.LongShirt][longShirt][longShirtColor]
                             );
                         }
                         catch (Exception e)
@@ -431,13 +431,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="longShirt" /> and <see cref="longShirtColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> LongShirt
+                public Tuple<ushort, RefMapAddOn.ColorCode> LongShirt
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(longShirt, longShirtColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(longShirt, longShirtColor); }
                     set
                     {
                         longShirt = value?.Item1 ?? Empty;
-                        longShirtColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        longShirtColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeLongShirt(bundle[sex]);
                     }
                 }
@@ -451,7 +451,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             shoulderTrait = new ShoulderTrait(
                                 $"{sex}{shoulder}{shoulderColor}",
-                                data[RefMapSex.ItemTypeCode.Shoulder][shoulder][shoulderColor]
+                                data[RefMapSex.AddOnTypeCode.Shoulder][shoulder][shoulderColor]
                             );
                         }
                         catch (Exception e)
@@ -464,13 +464,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="shoulder" /> and <see cref="shoulderColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Shoulder
+                public Tuple<ushort, RefMapAddOn.ColorCode> Shoulder
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(shoulder, shoulderColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(shoulder, shoulderColor); }
                     set
                     {
                         shoulder = value?.Item1 ?? Empty;
-                        shoulderColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        shoulderColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeShoulder(bundle[sex]);
                     }
                 }
@@ -484,7 +484,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             shoulderTrait = new CloakTrait(
                                 $"{sex}{cloak}{cloakColor}",
-                                data[RefMapSex.ItemTypeCode.Cloak][cloak][cloakColor]
+                                data[RefMapSex.AddOnTypeCode.Cloak][cloak][cloakColor]
                             );
                         }
                         catch (Exception e)
@@ -497,13 +497,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="cloak" /> and <see cref="cloakColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Cloak
+                public Tuple<ushort, RefMapAddOn.ColorCode> Cloak
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(cloak, cloakColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(cloak, cloakColor); }
                     set
                     {
                         cloak = value?.Item1 ?? Empty;
-                        cloakColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        cloakColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeCloak(bundle[sex]);
                     }
                 }

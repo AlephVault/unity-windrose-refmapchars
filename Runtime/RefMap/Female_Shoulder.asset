@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_Shoulder
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 0100020003000400050006000700
     m_values:
-    - {fileID: 11400000, guid: 8fd71e3677768708eba878fdddc1882a, type: 2}
-    - {fileID: 11400000, guid: 805b33de9692e26e394ecd5cc5777126, type: 2}
-    - {fileID: 11400000, guid: 4c67d4515e2272cb9ae29771a8c7ba67, type: 2}
-    - {fileID: 11400000, guid: 4b7c71cd96cc568c7aa3258f1d4d3c5b, type: 2}
-    - {fileID: 11400000, guid: e3b45eb12642e16d99bdb0b086a1318d, type: 2}
-    - {fileID: 11400000, guid: 5ae93841f6ac9d707b7de9f7054e43ef, type: 2}
-    - {fileID: 11400000, guid: 53e94d0ba52d58781b1fe49f7abe2716, type: 2}
+    - {fileID: 11400000, guid: 22adaa6209bb6993c89fca82103bb636, type: 2}
+    - {fileID: 11400000, guid: e27f8c691bfe008619c7ce3bdf237d7a, type: 2}
+    - {fileID: 11400000, guid: b3a4a5744b73e34c7b1379b32a812d2e, type: 2}
+    - {fileID: 11400000, guid: 927ba8f524a6cbce2bdaa10d07283761, type: 2}
+    - {fileID: 11400000, guid: 222189de31413e33ea2f4fe6289f6583, type: 2}
+    - {fileID: 11400000, guid: 78cc0ab797344840297b075d05612bc3, type: 2}
+    - {fileID: 11400000, guid: 369934eb04cf0bf30b8a167cd9aa0e19, type: 2}

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab06106133548138e87ab3190f83108, type: 3}
-  m_Name: DumbHanItem
+  m_Script: {fileID: 11500000, guid: dc41e922d9a7464c80430415f3dbd178, type: 3}
+  m_Name: Male_Necklace
   m_EditorClassIdentifier: 
   items:
     m_keys: 

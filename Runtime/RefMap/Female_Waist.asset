@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_Waist
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 01000200
     m_values:
-    - {fileID: 11400000, guid: 52d1dd5a9fbafee7e9b032e30746f001, type: 2}
-    - {fileID: 11400000, guid: 1884dbd37adf8e767aac020187485f98, type: 2}
+    - {fileID: 11400000, guid: d20c6c11111d8249e89774217bc5be4b, type: 2}
+    - {fileID: 11400000, guid: 9369e42668a6db2a88d569320bd85eb2, type: 2}

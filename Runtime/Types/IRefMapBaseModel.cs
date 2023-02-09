@@ -26,12 +26,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             /// <summary>
             ///   Data of the hair to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Hair { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Hair { get; }
 
             /// <summary>
             ///   Data of the hat to use. It can be null.
             /// </summary>
-            public Tuple<ushort, RefMapItem.ColorCode> Hat { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Hat { get; }
 
             /// <summary>
             ///   Data of the necklace item to use.

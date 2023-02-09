@@ -29,7 +29,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   of each other respectively).
             /// </summary>
             [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "Wind Rose/RefMap Chars/Standard Item (10 colors variations)", order = 105)]
-            public class RefMapItem : ScriptableObject
+            public class RefMapAddOn : ScriptableObject
             {
                 /// <summary>
                 ///   Each item or body trait (other than the body itself)
@@ -91,9 +91,9 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   {path}/(Male|Female)/{ItemType}.
                 /// </summary>
                 /// <param name="path">The path to read from</param>
-                /// <param name="item">The body to read into</param>
+                /// <param name="addOn">The body to read into</param>
                 /// <param name="back">Whether this asset is populated from _b images</param>
-                internal static void Populate(string path, int idx, RefMapItem item, bool back = false)
+                internal static void Populate(string path, int idx, RefMapAddOn addOn, bool back = false)
                 {
                     string suffix = back ? "_b" : "";
                     foreach (ColorCode code in Enum.GetValues(typeof(ColorCode)))
@@ -103,7 +103,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>(file);
                             if (tex == null) throw new Exception();
-                            item.variations.Add(code, new RefMapSource { Texture = tex });
+                            addOn.variations.Add(code, new RefMapSource { Texture = tex });
                         }
                         catch (Exception e)
                         {
@@ -115,7 +115,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             }
             
             /// <summary>
-            ///   Methods for the <see cref="RefMapItem.ColorCode" /> class.
+            ///   Methods for the <see cref="RefMapAddOn.ColorCode" /> class.
             /// </summary>
             public static class ItemColorCodeMethods
             {
@@ -125,29 +125,29 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="code">The color code</param>
                 /// <returns>The in-file code name</returns>
                 /// <exception cref="ArgumentException">An invalid or unexpected color was provided</exception>
-                public static string Name(this RefMapItem.ColorCode code)
+                public static string Name(this RefMapAddOn.ColorCode code)
                 {
                     switch (code)
                     {
-                        case RefMapItem.ColorCode.Black:
+                        case RefMapAddOn.ColorCode.Black:
                             return "black";
-                        case RefMapItem.ColorCode.Blue:
+                        case RefMapAddOn.ColorCode.Blue:
                             return "blue";
-                        case RefMapItem.ColorCode.DarkBrown:
+                        case RefMapAddOn.ColorCode.DarkBrown:
                             return "dbrown";
-                        case RefMapItem.ColorCode.Green:
+                        case RefMapAddOn.ColorCode.Green:
                             return "green";
-                        case RefMapItem.ColorCode.LightBrown:
+                        case RefMapAddOn.ColorCode.LightBrown:
                             return "lbrown";
-                        case RefMapItem.ColorCode.Pink:
+                        case RefMapAddOn.ColorCode.Pink:
                             return "pink";
-                        case RefMapItem.ColorCode.Purple:
+                        case RefMapAddOn.ColorCode.Purple:
                             return "purple";
-                        case RefMapItem.ColorCode.Red:
+                        case RefMapAddOn.ColorCode.Red:
                             return "red";
-                        case RefMapItem.ColorCode.White:
+                        case RefMapAddOn.ColorCode.White:
                             return "white";
-                        case RefMapItem.ColorCode.Yellow:
+                        case RefMapAddOn.ColorCode.Yellow:
                             return "yellow";
                         default:
                             throw new ArgumentException($"Invalid item color code: {code}");

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Male_Boots
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 010002000300
     m_values:
-    - {fileID: 11400000, guid: ddd7171b00a3b6ab6b283c2da7f3fe20, type: 2}
-    - {fileID: 11400000, guid: 031811e0b116ded2ca7b32e4b0c53264, type: 2}
-    - {fileID: 11400000, guid: 7763b7ffe24d103409dcc844d54cd439, type: 2}
+    - {fileID: 11400000, guid: 3be936b2ca5eb55b993da4f69f139304, type: 2}
+    - {fileID: 11400000, guid: 32ca2af67373e2952a9a289d4914f3da, type: 2}
+    - {fileID: 11400000, guid: 0072c4bd4f1d5f2c086d9345f11e392f, type: 2}

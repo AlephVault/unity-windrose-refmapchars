@@ -325,7 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed490efddab1419fb20083e1dc9c4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 0}
   moves: 1
 --- !u!1 &832018496
 GameObject:
@@ -1187,6 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 16384
+  priority: 0
   RelatedObjectOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &1143659139
 SpriteRenderer:
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ef4683fdce4da1a0ca4b1945f9b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  bundle: {fileID: 11400000, guid: 464e3db46d230a8b19c37958a4e07199, type: 2}
   sex: 0
   bodyColor: 6
   hair: 0
@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 16384
+  priority: 0
   RelatedObjectOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &1332156349
 SpriteRenderer:
@@ -1609,7 +1610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ef4683fdce4da1a0ca4b1945f9b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 11400000, guid: f46520292ad46c5e68471b612a465f94, type: 2}
+  bundle: {fileID: 11400000, guid: 464e3db46d230a8b19c37958a4e07199, type: 2}
   sex: 0
   bodyColor: 6
   hair: 0
@@ -1771,7 +1772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed490efddab1419fb20083e1dc9c4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundle: {fileID: 0}
   moves: 0
 --- !u!1 &2041746000
 GameObject:

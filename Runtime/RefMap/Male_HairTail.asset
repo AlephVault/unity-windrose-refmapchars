@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Male_HairTail
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 0700
     m_values:
-    - {fileID: 11400000, guid: 8a306d97a040a7ff4a117f96941f4f09, type: 2}
+    - {fileID: 11400000, guid: a9c9230d70e832c05bcd26e68dd5ebcf, type: 2}

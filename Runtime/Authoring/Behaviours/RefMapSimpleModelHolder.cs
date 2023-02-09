@@ -32,7 +32,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The cloth color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode clothColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode clothColor = RefMapAddOn.ColorCode.Black;
                 
                 protected virtual void Awake()
                 {
@@ -54,7 +54,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             clothTrait = new ClothTrait(
                                 $"{sex}{cloth}{clothColor}",
-                                data[RefMapSex.ItemTypeCode.Cloth][cloth][clothColor]
+                                data[RefMapSex.AddOnTypeCode.Cloth][cloth][clothColor]
                             );
                         }
                         catch (Exception e)
@@ -130,13 +130,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="cloth" /> and <see cref="clothColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Cloth
+                public Tuple<ushort, RefMapAddOn.ColorCode> Cloth
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(cloth, clothColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(cloth, clothColor); }
                     set
                     {
                         cloth = value?.Item1 ?? Empty;
-                        clothColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        clothColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeCloth(bundle[sex]);
                     }
                 }

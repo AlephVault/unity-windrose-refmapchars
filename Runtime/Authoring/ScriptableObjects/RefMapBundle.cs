@@ -54,30 +54,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// </summary>
                 [SerializeField]
                 private RefMapSexDictionary sexes = new RefMapSexDictionary();
-
-                /// <summary>
-                ///   The dictionary to use for extra items (maps a type code to a <see cref="RefMapExtra"/>).
-                /// </summary>
-                [Serializable]
-                public class RefMapExtraDictionary : Dictionary<ExtraItemTypeCode, RefMapExtra> {}
-
-                /// <summary>
-                ///   A dictionary of the extra types to use in this main bundle.
-                /// </summary>
-                [SerializeField]
-                private RefMapExtraDictionary extras = new RefMapExtraDictionary();
                 
                 /// <summary>
                 ///   Gets a <see cref="RefMapSex"/> at a given sex code.
                 /// </summary>
                 /// <param name="sexCode">The code to retrieve the data for</param>
                 public RefMapSex this[SexCode sexCode] => sexes[sexCode];
-
-                /// <summary>
-                ///   Gets a <see cref="RefMapExtra"/> at a given extra code.
-                /// </summary>
-                /// <param name="extraCode">The code to retrieve the data for</param>
-                public RefMapExtra this[ExtraItemTypeCode extraCode] => extras[extraCode];
                 
                 /// <summary>
                 ///   Gets the available sex data elements in this main bundle.
@@ -140,25 +122,36 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         
                         SexCode sexCode = sexPair.Key;
                         RefMapSex sex = sexPair.Value;
-                        foreach (KeyValuePair<RefMapSex.ItemTypeCode, RefMapItemType> itemTypePair in sex.Items())
+
+                        foreach (KeyValuePair<RefMapSex.AddOnTypeCode, RefMapAddOnType> addOnTypePair in sex.AddOns())
                         {
-                            // Save a RefMapItemType : Save many RefMapItem.
+                            // Save a RefMapAddOnType : Save many RefMapAddOn.
                             
-                            RefMapSex.ItemTypeCode typeCode = itemTypePair.Key;
-                            RefMapItemType type_ = itemTypePair.Value;
-                            foreach (KeyValuePair<ushort, RefMapItem> itemPair in type_.Items())
+                            RefMapSex.AddOnTypeCode typeCode = addOnTypePair.Key;
+                            RefMapAddOnType addOnType = addOnTypePair.Value;
+                            foreach (KeyValuePair<ushort, RefMapAddOn> itemPair in addOnType.AddOns())
                             {
                                 // Save a RefMapItem.
 
                                 ushort itemIdx = itemPair.Key;
-                                RefMapItem item = itemPair.Value;
+                                RefMapAddOn addOn = itemPair.Value;
 
                                 string itemPath = Path.Combine(refmap, $"{sexCode}_{typeCode}_{itemIdx}.asset");
-                                AssetDatabase.CreateAsset(item, itemPath);
+                                AssetDatabase.CreateAsset(addOn, itemPath);
                             }
 
                             string typePath = Path.Combine(refmap, $"{sexCode}_{typeCode}.asset");
-                            AssetDatabase.CreateAsset(type_, typePath);
+                            AssetDatabase.CreateAsset(addOnType, typePath);
+                        }
+
+                        foreach (KeyValuePair<RefMapSex.ItemTypeCode, RefMapItemType> itemTypePair in sex.Items())
+                        {
+                            // Save a RefMapItemType only.
+                            
+                            RefMapSex.ItemTypeCode typeCode = itemTypePair.Key;
+                            RefMapItemType itemType = itemTypePair.Value;
+                            string typePath = Path.Combine(refmap, $"{sexCode}_{typeCode}.asset");
+                            AssetDatabase.CreateAsset(itemType, typePath);
                         }
 
                         string bodyPath = Path.Combine(refmap, $"{sexCode}_Body.asset");
@@ -166,12 +159,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
 
                         string sexPath = Path.Combine(refmap, $"{sexCode}.asset");
                         AssetDatabase.CreateAsset(sex, sexPath);
-                    }
-
-                    foreach (KeyValuePair<ExtraItemTypeCode, RefMapExtra> extraPair in bundle.extras)
-                    {
-                        string extraPath = Path.Combine(refmap, $"{extraPair.Key}.asset");
-                        AssetDatabase.CreateAsset(extraPair.Value, extraPath);
                     }
                     
                     string bundlePath = Path.Combine(refmap, "Bundle.asset");
@@ -193,13 +180,6 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     RefMapSex.Populate(Path.Combine(path, "Female"), female);
                     main.sexes.Add(SexCode.Male, male);
                     main.sexes.Add(SexCode.Female, female);
-                    RefMapExtra necklaces = CreateInstance<RefMapExtra>();
-                    RefMapExtra skilledHandItems = CreateInstance<RefMapExtra>();
-                    RefMapExtra dumbHandItems = CreateInstance<RefMapExtra>();
-                    RefMapExtra cloaks = CreateInstance<RefMapExtra>();
-                    main.extras.Add(ExtraItemTypeCode.Necklace, necklaces);
-                    main.extras.Add(ExtraItemTypeCode.SkilledHandItem, skilledHandItems);
-                    main.extras.Add(ExtraItemTypeCode.DumbHanItem, dumbHandItems);
                 }
 #endif
             }

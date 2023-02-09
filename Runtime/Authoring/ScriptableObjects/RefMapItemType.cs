@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
 using UnityEngine;
 
 
@@ -14,12 +14,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             using AlephVault.Unity.Support.Generic.Authoring.Types;
             
             /// <summary>
-            ///   A list of the available items, given a category
-            ///   index. Only 65536 items are allowed. Categories
-            ///   (item types) belong to a sex, and contain items
+            ///   A list of the available add-ons, given a category
+            ///   index. Only 65535 add-ons are allowed. Categories
+            ///   (add-on types) belong to a sex, and contain add-ons
             ///   that are defined within.
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapItemType", menuName = "Wind Rose/RefMap Chars/Standard Items Category (10 colors variations)", order = 104)]
+            [CreateAssetMenu(fileName = "NewRefMapItemType", menuName = "Wind Rose/RefMap Chars/Standard Item Category (no color variations)", order = 104)]
             public class RefMapItemType : ScriptableObject
             {
                 /// <summary>
@@ -27,7 +27,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   map item).
                 /// </summary>
                 [Serializable]
-                public class RefMapItemsDictionary : Dictionary<ushort, RefMapItem> {}
+                public class RefMapItemsDictionary : Dictionary<ushort, RefMapSource> {}
             
                 /// <summary>
                 ///   A dictionary of the items to use in this category.
@@ -36,10 +36,10 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 private RefMapItemsDictionary items = new RefMapItemsDictionary();
 
                 /// <summary>
-                ///   Gets a <see cref="RefMapItem"/> at a given index.
+                ///   Gets a <see cref="RefMapSource"/> at a given index.
                 /// </summary>
                 /// <param name="index">The index to retrieve the item for</param>
-                public RefMapItem this[ushort index] => items[index];
+                public RefMapSource this[ushort index] => items[index];
                 
                 /// <summary>
                 ///   The count of items in the type.
@@ -50,55 +50,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   Get the available items in the type.
                 /// </summary>
                 /// <returns>An enumerable of pairs index/item</returns>
-                public IEnumerable<KeyValuePair<ushort, RefMapItem>> Items()
+                public IEnumerable<KeyValuePair<ushort, RefMapSource>> Items()
                 {
                     return from item in items
                            where item.Value != null
                            select item;
                 }
-                
-#if UNITY_EDITOR
-                /// <summary>
-                ///   Populates the whole item type from a directory.
-                ///   This path is typically {path}/(Male|Female)/{ItemType}.
-                ///   In this case, populating involves also creating the
-                ///   instances of Items and adding them to the dictionary.
-                /// </summary>
-                /// <param name="path">The path to read from</param>
-                /// <param name="itemType">The item type to read into</param>
-                /// <param name="backType">The back type to read into, if a back image is present</param>
-                internal static void Populate(string path, RefMapItemType itemType, RefMapItemType backType = null)
-                {
-                    ushort idx = 1;
-                    while (true)
-                    {
-                        // First, look for textures of name {idx}_{color}.png.
-                        Debug.Log($"Path is: {path}");
-                        string[] files = Directory.GetFiles(path, $"{idx}_*.png");
-                        if (files.Length != 0)
-                        {
-                            RefMapItem item = CreateInstance<RefMapItem>();
-                            RefMapItem.Populate(path, idx, item);
-                            itemType.items.Add(idx, item);
-                            if (backType)
-                            {
-                                string[] backFiles = Directory.GetFiles(path, $"{idx}_*_b.png");
-                                if (backFiles.Length != 0)
-                                {
-                                    RefMapItem backItem = CreateInstance<RefMapItem>();
-                                    RefMapItem.Populate(path, idx, backItem, true);
-                                    backType.items.Add(idx, backItem);
-                                }
-                            }
-                            idx += 1;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-#endif
             }
         }
     }    

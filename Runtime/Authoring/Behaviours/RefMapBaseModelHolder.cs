@@ -57,7 +57,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The hair color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode hairColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode hairColor = RefMapAddOn.ColorCode.Black;
 
                 /// <summary>
                 ///   The hat. Use <see cref="Empty" /> to clear it out.
@@ -69,7 +69,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 ///   The hat color.
                 /// </summary>
                 [SerializeField]
-                private RefMapItem.ColorCode hatColor = RefMapItem.ColorCode.Black;
+                private RefMapAddOn.ColorCode hatColor = RefMapAddOn.ColorCode.Black;
 
                 /// <summary>
                 ///   The necklace. Use <see cref="Empty" /> to clear it out.
@@ -134,7 +134,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             try
                             {
-                                hairTail = data[RefMapSex.ItemTypeCode.HairTail][hair][hairColor];
+                                hairTail = data[RefMapSex.AddOnTypeCode.HairTail][hair][hairColor];
                             }
                             catch (Exception e)
                             {
@@ -142,7 +142,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                             
                             hairTrait = new HairTrait(
                                 $"{sex}{hair}{hairColor}",
-                                data[RefMapSex.ItemTypeCode.Hair][hair][hairColor],
+                                data[RefMapSex.AddOnTypeCode.Hair][hair][hairColor],
                                 hairTail
                             );
                         }
@@ -168,7 +168,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             hatTrait = new HatTrait(
                                 $"{sex}{hat}{hatColor}",
-                                data[RefMapSex.ItemTypeCode.Hat][hat][hatColor]
+                                data[RefMapSex.AddOnTypeCode.Hat][hat][hatColor]
                             );
                         }
                         catch (Exception e)
@@ -184,7 +184,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="hat">the hat trait to use</param>
                 protected abstract void DoChangeHat(HatTrait hat);
 
-                private void ChangeNecklace(RefMapExtra data)
+                private void ChangeNecklace(RefMapSex data)
                 {
                     NecklaceTrait necklaceTrait = null;
                     if (necklace != Empty)
@@ -193,7 +193,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             necklaceTrait = new NecklaceTrait(
                                 $"nkl{necklace}",
-                                data[necklace]
+                                data[RefMapSex.ItemTypeCode.Necklace][necklace]
                             );
                         }
                         catch (Exception e)
@@ -209,7 +209,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="necklace">the necklace trait to use</param>
                 protected abstract void DoChangeNecklace(NecklaceTrait necklace);
 
-                private void ChangeSkilledHandItem(RefMapExtra data)
+                private void ChangeSkilledHandItem(RefMapSex data)
                 {
                     SkilledHandItemTrait skilledHandItemTrait = null;
                     if (skilledHandItem != Empty)
@@ -218,7 +218,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             skilledHandItemTrait = new SkilledHandItemTrait(
                                 $"shi{skilledHandItem}",
-                                data[skilledHandItem]
+                                data[RefMapSex.ItemTypeCode.SkilledHandItem][skilledHandItem]
                             );
                         }
                         catch (Exception e)
@@ -234,7 +234,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="skilledHandItem">the skilled hand item trait to use</param>
                 protected abstract void DoChangeSkilledHandItem(SkilledHandItemTrait skilledHandItem);
 
-                private void ChangeDumbHandItem(RefMapExtra data)
+                private void ChangeDumbHandItem(RefMapSex data)
                 {
                     DumbHandItemTrait dumbHandItemTrait = null;
                     if (dumbHandItem != Empty)
@@ -243,7 +243,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         {
                             dumbHandItemTrait = new DumbHandItemTrait(
                                 $"dhi{dumbHandItem}",
-                                data[dumbHandItem]
+                                data[RefMapSex.ItemTypeCode.DumbHandItem][dumbHandItem]
                             );
                         }
                         catch (Exception e)
@@ -294,13 +294,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="hair" /> and <see cref="hairColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Hair
+                public Tuple<ushort, RefMapAddOn.ColorCode> Hair
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(hair, hairColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(hair, hairColor); }
                     set
                     {
                         hair = value?.Item1 ?? Empty;
-                        hairColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        hairColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeHair(bundle[sex]);
                     }
                 }
@@ -308,13 +308,13 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <summary>
                 ///   See <see cref="hat" /> and <see cref="hatColor" />.
                 /// </summary>
-                public Tuple<ushort, RefMapItem.ColorCode> Hat
+                public Tuple<ushort, RefMapAddOn.ColorCode> Hat
                 {
-                    get { return new Tuple<ushort, RefMapItem.ColorCode>(hat, hatColor); }
+                    get { return new Tuple<ushort, RefMapAddOn.ColorCode>(hat, hatColor); }
                     set
                     {
                         hat = value?.Item1 ?? Empty;
-                        hatColor = value?.Item2 ?? RefMapItem.ColorCode.Black;
+                        hatColor = value?.Item2 ?? RefMapAddOn.ColorCode.Black;
                         ChangeHat(bundle[sex]);
                     }
                 }
@@ -328,7 +328,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     set
                     {
                         necklace = value;
-                        ChangeNecklace(bundle[RefMapBundle.ExtraItemTypeCode.Necklace]);
+                        ChangeNecklace(bundle[sex]);
                     }
                 }
 
@@ -341,7 +341,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     set
                     {
                         skilledHandItem = value;
-                        ChangeSkilledHandItem(bundle[RefMapBundle.ExtraItemTypeCode.SkilledHandItem]);
+                        ChangeSkilledHandItem(bundle[sex]);
                     }
                 }
 
@@ -354,7 +354,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     set
                     {
                         dumbHandItem = value;
-                        ChangeDumbHandItem(bundle[RefMapBundle.ExtraItemTypeCode.DumbHanItem]);
+                        ChangeDumbHandItem(bundle[sex]);
                     }
                 }
 

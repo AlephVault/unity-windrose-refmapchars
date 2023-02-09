@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_LongShirt
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 010002000300040005000600070008000900
     m_values:
-    - {fileID: 11400000, guid: 9333dcc420d8c10008b2ce62b990c249, type: 2}
-    - {fileID: 11400000, guid: b5857154748f1c19d86e7183769d2f71, type: 2}
-    - {fileID: 11400000, guid: 05746e0330275f954aaf8b58259860fa, type: 2}
-    - {fileID: 11400000, guid: ce8a9e833582533e49ebe394dd34d2ca, type: 2}
-    - {fileID: 11400000, guid: 54ca2d0605909a17e846ae3000b9004b, type: 2}
-    - {fileID: 11400000, guid: 6be071107a5e64bf79955573a549b23c, type: 2}
-    - {fileID: 11400000, guid: 34291d739b60fe8b98bbb689d0c9842b, type: 2}
-    - {fileID: 11400000, guid: 29a20f30d3d9bdafabeea8191e43b2cb, type: 2}
-    - {fileID: 11400000, guid: 4ac68bfbd9eea910683a423aaa5f6545, type: 2}
+    - {fileID: 11400000, guid: 382934258a5e1f718914f7d6dbc119a6, type: 2}
+    - {fileID: 11400000, guid: d09aa0fc6857ed069beea358e90cff60, type: 2}
+    - {fileID: 11400000, guid: d0f2308c4eee59856a9adbb07e8f8cbf, type: 2}
+    - {fileID: 11400000, guid: 0fc3ee7e84bf0613abe9d53162170ebc, type: 2}
+    - {fileID: 11400000, guid: 75855acb6aa6e08ddb11eca8d9a8e1b5, type: 2}
+    - {fileID: 11400000, guid: 696734b0ded07f551bc2f73d9af54732, type: 2}
+    - {fileID: 11400000, guid: 24cd114fd0b8818148694bdf86e3bd47, type: 2}
+    - {fileID: 11400000, guid: 69a1dfceaf7320b07975d164c4afb680, type: 2}
+    - {fileID: 11400000, guid: 2f077afb61bbf270d930a2d4781864ed, type: 2}

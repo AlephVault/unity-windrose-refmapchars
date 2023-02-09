@@ -11,12 +11,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             namespace Standard
             {
                 [CustomPropertyDrawer(typeof(RefMapBody.RefMapVariationsDictionary))]
-                [CustomPropertyDrawer(typeof(RefMapItem.RefMapVariationsDictionary))]
+                [CustomPropertyDrawer(typeof(RefMapAddOn.RefMapVariationsDictionary))]
+                [CustomPropertyDrawer(typeof(RefMapAddOnType.RefMapAddOnsDictionary))]
                 [CustomPropertyDrawer(typeof(RefMapItemType.RefMapItemsDictionary))]
+                [CustomPropertyDrawer(typeof(RefMapSex.RefMapAddOnTypesDictionary))]
                 [CustomPropertyDrawer(typeof(RefMapSex.RefMapItemTypesDictionary))]
                 [CustomPropertyDrawer(typeof(RefMapBundle.RefMapSexDictionary))]
-                [CustomPropertyDrawer(typeof(RefMapBundle.RefMapExtraDictionary))]
-                [CustomPropertyDrawer(typeof(RefMapExtra.RefMapExtraItemsDictionary))]
                 public class RefMapDictionaryPropertyDrawer : DictionaryPropertyDrawer {}
             }
         }

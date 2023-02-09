@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_Chest
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 010002000300
     m_values:
-    - {fileID: 11400000, guid: 10e58458106ef2e8d82e1813e191ceac, type: 2}
-    - {fileID: 11400000, guid: 0cb5caabbe6664c9d902346753cc1fca, type: 2}
-    - {fileID: 11400000, guid: 76c76b2b476bdb5868399551bd0bdfe8, type: 2}
+    - {fileID: 11400000, guid: 5fd4e44875f70fbc985b82620de00ad3, type: 2}
+    - {fileID: 11400000, guid: 6b697bcbca474a078905813d2d3864dc, type: 2}
+    - {fileID: 11400000, guid: b5f3ba94d69db10c1bf189e8816a184b, type: 2}

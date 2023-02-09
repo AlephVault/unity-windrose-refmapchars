@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_HairTail
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 030007000d00
     m_values:
-    - {fileID: 11400000, guid: 62314dd6cb715f2f3b287ffb2358f796, type: 2}
-    - {fileID: 11400000, guid: bd056cfce038c4468b2983b3f28eff74, type: 2}
-    - {fileID: 11400000, guid: ba014e34eba742b53847e5b18efc9ab1, type: 2}
+    - {fileID: 11400000, guid: d0bfce1ade4d652698af5dee83ebb882, type: 2}
+    - {fileID: 11400000, guid: 77a96da9b23c9d19f9b5cd7eb92ca250, type: 2}
+    - {fileID: 11400000, guid: 8fad7876c882f1ed1bc1cff67876d397, type: 2}

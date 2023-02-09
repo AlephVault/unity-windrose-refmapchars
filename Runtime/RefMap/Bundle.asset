@@ -15,11 +15,5 @@ MonoBehaviour:
   sexes:
     m_keys: 0000000001000000
     m_values:
-    - {fileID: 11400000, guid: ad3829464ce2162138a49771ab1d8d13, type: 2}
-    - {fileID: 11400000, guid: 8855f8393bdad57b289fdbad6a1a47a9, type: 2}
-  extras:
-    m_keys: 000000000100000002000000
-    m_values:
-    - {fileID: 11400000, guid: 783f760822ca9cd30989b89d913c9b7a, type: 2}
-    - {fileID: 11400000, guid: e9af84be47691c062ac3db990e65b53c, type: 2}
-    - {fileID: 11400000, guid: 113492eb3775f477caf1cb92a5701bcc, type: 2}
+    - {fileID: 11400000, guid: 93a74e4fff919f2c2a0941e235fcd5df, type: 2}
+    - {fileID: 11400000, guid: 6e4b0080d6624acc884dc22f60beb6fa, type: 2}

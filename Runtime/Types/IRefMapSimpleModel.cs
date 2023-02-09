@@ -17,7 +17,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   Data of the cloth to use. It can be null.
             /// </summary>
             [CanBeNull]
-            public Tuple<ushort, RefMapItem.ColorCode> Cloth { get; }
+            public Tuple<ushort, RefMapAddOn.ColorCode> Cloth { get; }
         }
     }
 }

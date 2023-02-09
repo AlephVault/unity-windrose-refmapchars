@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Codice.CM.WorkspaceServer.Lock;
 using UnityEngine;
 
 
@@ -26,11 +27,11 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             public class RefMapSex : ScriptableObject
             {
                 /// <summary>
-                ///   The available item types. In this coding,
-                ///   the hair is broken into two different
-                ///   parts: front, and tail.
+                ///   The available add-on types. In this coding,
+                ///   the hair is broken into two different parts:
+                ///   front, and tail.
                 /// </summary>
-                public enum ItemTypeCode
+                public enum AddOnTypeCode
                 {
                     Boots,
                     Pants,
@@ -46,7 +47,24 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     Hat,
                     Cloak
                 }
-            
+
+                /// <summary>
+                ///   The dictionary to use (maps a category code to a ref
+                ///   map add-on type).
+                /// </summary>
+                [Serializable]
+                public class RefMapAddOnTypesDictionary : Dictionary<AddOnTypeCode, RefMapAddOnType> {}
+
+                /// <summary>
+                ///   The available item types.
+                /// </summary>
+                public enum ItemTypeCode
+                {
+                    Necklace,
+                    SkilledHandItem,
+                    DumbHandItem
+                }
+
                 /// <summary>
                 ///   The dictionary to use (maps a category code to a ref
                 ///   map item type).
@@ -61,6 +79,12 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 private RefMapBody body;
                 
                 /// <summary>
+                ///   A dictionary of the add-on categories to use in this sex.
+                /// </summary>
+                [SerializeField]
+                private RefMapAddOnTypesDictionary addOnTypes = new RefMapAddOnTypesDictionary();
+
+                /// <summary>
                 ///   A dictionary of the item categories to use in this sex.
                 /// </summary>
                 [SerializeField]
@@ -72,16 +96,38 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 public RefMapBody Body => body;
 
                 /// <summary>
-                ///   Gets a <see cref="RefMapItemType"/> at a given item type.
+                ///   Gets a <see cref="RefMapAddOnType"/> at a given add-on type code.
                 /// </summary>
-                /// <param name="index">The item type to retrieve the items for</param>
+                /// <param name="addOnTypeCode">The add-on type to retrieve the add-ons for</param>
+                public RefMapAddOnType this[AddOnTypeCode addOnTypeCode] => addOnTypes[addOnTypeCode];
+                
+                /// <summary>
+                ///   Gets a <see cref="RefMapItemType"/> at a given item type code.
+                /// </summary>
+                /// <param name="itemTypeCode">The item type to retrieve the items for</param>
                 public RefMapItemType this[ItemTypeCode itemTypeCode] => itemTypes[itemTypeCode];
                 
                 /// <summary>
+                ///   The count of add-on types in a sex data.
+                /// </summary>
+                public int AddOnTypesCount => addOnTypes.Count;
+
+                /// <summary>
                 ///   The count of item types in a sex data.
                 /// </summary>
-                public int Count => itemTypes.Count;
+                public int ItemTypesCount => itemTypes.Count;
 
+                /// <summary>
+                ///   Gets the available add-on types of the sex data.
+                /// </summary>
+                /// <returns>An enumerable of pairs add-on type code/add-on type</returns>
+                public IEnumerable<KeyValuePair<AddOnTypeCode, RefMapAddOnType>> AddOns()
+                {
+                    return from addOnType in addOnTypes
+                           where addOnType.Value != null
+                           select addOnType;
+                }
+                
                 /// <summary>
                 ///   Gets the available item types of the sex data.
                 /// </summary>
@@ -104,30 +150,39 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 /// <param name="sex">The sex bundle to read into</param>
                 internal static void Populate(string path, RefMapSex sex)
                 {
+                    // First, the body.
                     RefMapBody body = CreateInstance<RefMapBody>();
                     RefMapBody.Populate(Path.Combine(path, "Base"), body);
                     sex.body = body;
-                    foreach (ItemTypeCode code in Enum.GetValues(typeof(ItemTypeCode)))
+                    
+                    // Then, the add-ons.
+                    foreach (AddOnTypeCode code in Enum.GetValues(typeof(AddOnTypeCode)))
                     {
-                        if (code == ItemTypeCode.Hair || code == ItemTypeCode.HairTail ||
-                            code == ItemTypeCode.Cloak) continue;
-                        RefMapItemType itemType = CreateInstance<RefMapItemType>();
-                        if (code != ItemTypeCode.Cloth)
+                        if (code == AddOnTypeCode.Hair || code == AddOnTypeCode.HairTail ||
+                            code == AddOnTypeCode.Cloak) continue;
+                        RefMapAddOnType itemType = CreateInstance<RefMapAddOnType>();
+                        if (code != AddOnTypeCode.Cloth)
                         {
                             // Full clothes are entirely custom. They must
                             // be built from an entirely separate process
                             // and do not come by default.
-                            RefMapItemType.Populate(Path.Combine(path, code.ToString()), itemType);
+                            RefMapAddOnType.Populate(Path.Combine(path, code.ToString()), itemType);
                         }
-                        sex.itemTypes.Add(code, itemType);
+                        sex.addOnTypes.Add(code, itemType);
                     }
-                    RefMapItemType hairType = CreateInstance<RefMapItemType>();
-                    RefMapItemType hairTailType = CreateInstance<RefMapItemType>();
-                    RefMapItemType cloakType = CreateInstance<RefMapItemType>();
-                    RefMapItemType.Populate(Path.Combine(path, "Hair"), hairType, hairTailType);
-                    sex.itemTypes.Add(ItemTypeCode.Hair, hairType);
-                    sex.itemTypes.Add(ItemTypeCode.HairTail, hairTailType);
-                    sex.itemTypes.Add(ItemTypeCode.Cloak, cloakType);
+                    RefMapAddOnType hairType = CreateInstance<RefMapAddOnType>();
+                    RefMapAddOnType hairTailType = CreateInstance<RefMapAddOnType>();
+                    RefMapAddOnType cloakType = CreateInstance<RefMapAddOnType>();
+                    RefMapAddOnType.Populate(Path.Combine(path, "Hair"), hairType, hairTailType);
+                    sex.addOnTypes.Add(AddOnTypeCode.Hair, hairType);
+                    sex.addOnTypes.Add(AddOnTypeCode.HairTail, hairTailType);
+                    sex.addOnTypes.Add(AddOnTypeCode.Cloak, cloakType);
+                    
+                    // Finally, the items.
+                    foreach (ItemTypeCode code in Enum.GetValues(typeof(ItemTypeCode)))
+                    {
+                        sex.itemTypes.Add(code, CreateInstance<RefMapItemType>());
+                    }
                 }
 #endif
             }

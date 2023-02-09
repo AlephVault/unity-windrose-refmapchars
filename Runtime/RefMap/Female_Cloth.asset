@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337e6c51b8fb45f0a912f114be7d7290, type: 3}
   m_Name: Female_Cloth
   m_EditorClassIdentifier: 
-  items:
+  addOns:
     m_keys: 
     m_values: []
