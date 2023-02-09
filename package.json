@@ -1,6 +1,6 @@
 {
   "name": "com.gamemeanmachine.unity.windrose.refmapchars",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "displayName": "Game Mean Machine - Unity - WindRose REFMAP Chars",
   "description": "Defines two pipelines to compose REFMAP characters, includes the standard REFMAP assets, and integrates everyting into character object.",
   "unity": "2020.3",
