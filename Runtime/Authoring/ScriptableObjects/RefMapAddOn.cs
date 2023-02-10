@@ -28,7 +28,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
             ///   in two different items, but working as a complement
             ///   of each other respectively).
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "Wind Rose/RefMap Chars/Standard Item (10 colors variations)", order = 105)]
+            [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "Wind Rose/RefMap Chars/Standard Add-On (10 colors variations)", order = 105)]
             public class RefMapAddOn : ScriptableObject
             {
                 /// <summary>
@@ -86,6 +86,62 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                 }
                 
 #if UNITY_EDITOR
+                private class CreateManyRefMapAddOnsWindow : EditorWindow
+                {
+                    public string path;
+                    public string namePrefix = "NewAddOn";
+                    public int howMany = 1; 
+
+                    private void OnGUI()
+                    {
+                        namePrefix = EditorGUILayout.TextField("New assets prefix", namePrefix).Trim();
+                        howMany = EditorGUILayout.IntField("How many?", howMany);
+                        if (howMany > 0 && GUILayout.Button("Generate"))
+                        {
+                            Execute();
+                        }
+                    }
+
+                    private void Execute()
+                    {
+                        for (int i = 0; i < howMany; i++)
+                        {
+                            string name = $"{namePrefix}{i}.asset";
+                            AssetDatabase.CreateAsset(CreateInstance<RefMapAddOn>(), Path.Combine(path, name));
+                        }
+                    }
+                }
+
+                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", true, 108)]
+                private static bool CanCreateManyRefMapAddOns()
+                {
+                    UnityEngine.Object obj = Selection.activeObject;
+                    if (obj is null)
+                    {
+                        return false;
+                    }
+
+                    string path = AssetDatabase.GetAssetPath(obj);
+                    // The object is a directory if (and only if) a
+                    // directory exists by this path. Otherwise, the
+                    // object is something else.
+                    return AssetDatabase.IsValidFolder(path);
+                }
+                
+                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", false, 105)]
+                private static void CreateManyRefMapAddOns()
+                {
+                    // Get the selected object.
+                    string path = AssetDatabase.GetAssetPath(Selection.activeObject);
+
+                    CreateManyRefMapAddOnsWindow window = CreateInstance<CreateManyRefMapAddOnsWindow>();
+                    window.titleContent = new GUIContent("Create many standard add-ons");
+                    window.path = path;
+                    window.maxSize = new Vector2(400, 64);
+                    window.minSize = new Vector2(400, 64);
+                    window.ShowUtility();
+                }
+
                 /// <summary>
                 ///   Populates a body from a given path. This path is typically
                 ///   {path}/(Male|Female)/{ItemType}.
