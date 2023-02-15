@@ -109,6 +109,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                             string name = $"{namePrefix}{i}.asset";
                             AssetDatabase.CreateAsset(CreateInstance<RefMapAddOn>(), Path.Combine(path, name));
                         }
+                        Close();
                     }
                 }
 
