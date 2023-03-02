@@ -60,9 +60,8 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                         catch (Exception e)
                         {
                         }
-                        applier.Use(clothTrait, false);
                     }
-                    applier.Use((ClothTrait)null, false);
+                    applier.Use(clothTrait, false);
                 }
                 
                 /// <summary>
