@@ -1,14 +1,11 @@
 {
-    "name": "GameMeanMachine.Unity.WindRose.RefMapChars.Editor",
+    "name": "AlephVault.Unity.WindRose.RefMapChars.Samples",
     "rootNamespace": "",
     "references": [
-        "GUID:cccffde430f2245d5a04195a4583a9bf",
-        "GUID:945c8b249a12adb898a7e967fd4e9e6f"
+        "GUID:d61261d1a98c4fafa1e0b59ab5c62fcc",
+        "GUID:52ead2d1b68342f286e7a26b1ca7141b"
     ],
-    "includePlatforms": [
-        "Editor",
-        "WebGL"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -1,14 +1,14 @@
 using System;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.Behaviours;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;
-using GameMeanMachine.Unity.WindRose.Authoring.Behaviours.Entities.Objects;
-using GameMeanMachine.Unity.WindRose.Authoring.Behaviours.Entities.Visuals;
-using GameMeanMachine.Unity.WindRose.Types;
+using AlephVault.Unity.WindRose.RefMapChars.Authoring.Behaviours;
+using AlephVault.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
+using AlephVault.Unity.WindRose.RefMapChars.Types;
+using AlephVault.Unity.WindRose.RefMapChars.Types.Traits;
+using AlephVault.Unity.WindRose.RefMapChars.Types.Traits.Standard;
+using AlephVault.Unity.WindRose.Authoring.Behaviours.Entities.Objects;
+using AlephVault.Unity.WindRose.Authoring.Behaviours.Entities.Visuals;
+using AlephVault.Unity.WindRose.Types;
 using UnityEngine;
-using Exception = GameMeanMachine.Unity.WindRose.Types.Exception;
+using Exception = AlephVault.Unity.WindRose.Types.Exception;
 
 
 [RequireComponent(typeof(MapObject))]

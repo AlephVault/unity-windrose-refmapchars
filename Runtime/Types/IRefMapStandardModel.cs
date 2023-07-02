@@ -1,8 +1,8 @@
 using System;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.Behaviours;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
+using AlephVault.Unity.WindRose.RefMapChars.Authoring.Behaviours;
+using AlephVault.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {

@@ -1,11 +1,11 @@
 using AlephVault.Unity.SpriteUtils.Types;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types.Traits.Standard;
+using AlephVault.Unity.WindRose.RefMapChars.Types;
+using AlephVault.Unity.WindRose.RefMapChars.Types.Traits;
+using AlephVault.Unity.WindRose.RefMapChars.Types.Traits.Standard;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {

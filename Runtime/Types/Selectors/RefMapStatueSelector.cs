@@ -1,10 +1,10 @@
 using AlephVault.Unity.SpriteUtils.Types;
-using GameMeanMachine.Unity.WindRose.SpriteUtils.Types.Selectors;
-using GameMeanMachine.Unity.WindRose.Types;
+using AlephVault.Unity.WindRose.SpriteUtils.Types.Selectors;
+using AlephVault.Unity.WindRose.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {

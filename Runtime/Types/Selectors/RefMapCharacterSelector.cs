@@ -1,14 +1,14 @@
 using System;
 using System.Collections.ObjectModel;
 using AlephVault.Unity.SpriteUtils.Types;
-using GameMeanMachine.Unity.WindRose.Authoring.Behaviours.Entities.Objects;
-using GameMeanMachine.Unity.WindRose.SpriteUtils.Types;
-using GameMeanMachine.Unity.WindRose.SpriteUtils.Types.Selectors;
-using GameMeanMachine.Unity.WindRose.Types;
+using AlephVault.Unity.WindRose.Authoring.Behaviours.Entities.Objects;
+using AlephVault.Unity.WindRose.SpriteUtils.Types;
+using AlephVault.Unity.WindRose.SpriteUtils.Types.Selectors;
+using AlephVault.Unity.WindRose.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameMeanMachine.Unity.WindRose.RefMapChars.Types;
+using AlephVault.Unity.WindRose.RefMapChars.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {

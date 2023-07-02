@@ -3,7 +3,7 @@ using AlephVault.Unity.TextureUtils.Types;
 using UnityEngine;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {

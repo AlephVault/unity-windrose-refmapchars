@@ -9,7 +9,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {
@@ -110,7 +110,7 @@ namespace GameMeanMachine.Unity.WindRose.RefMapChars
                     // First: Create the bundle and populate it.
                     RefMapBundle bundle = CreateInstance<RefMapBundle>();
                     Populate(
-                        "Packages/com.gamemeanmachine.unity.windrose.refmapchars/Runtime/Graphics",
+                        "Packages/com.alephvault.unity.windrose.refmapchars/Runtime/Graphics",
                         bundle
                     );
                     

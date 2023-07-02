@@ -51,7 +51,7 @@ TextureImporter:
       213: -1006298749756365454
     second: 2_pink_15
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -110,6 +111,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -137,6 +139,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -496,6 +510,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      2_pink_0: 7673535990988228716
+      2_pink_1: -7391223663915520145
+      2_pink_10: 5087510726582412760
+      2_pink_11: -6901827272858190847
+      2_pink_12: 2805748360028603614
+      2_pink_13: -6217670749228648479
+      2_pink_14: -7883932474094529848
+      2_pink_15: -1006298749756365454
+      2_pink_2: 3677033537449852526
+      2_pink_3: -6760528231094107652
+      2_pink_4: -7036557247052891067
+      2_pink_5: 2975577986411365745
+      2_pink_6: -2543894048468305689
+      2_pink_7: -1281109581995564942
+      2_pink_8: -376500916383891598
+      2_pink_9: -2087542404712704506
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

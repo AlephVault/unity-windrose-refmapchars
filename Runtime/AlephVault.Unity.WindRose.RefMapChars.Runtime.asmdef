@@ -1,12 +1,12 @@
 {
-    "name": "GameMeanMachine.Unity.WindRose.RefMapChars.Runtime",
+    "name": "AlephVault.Unity.WindRose.RefMapChars.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:8233aa084c7334eb18c3e9713fa443e5",
         "GUID:bb6eabf7788063212a196dda6018a5d0",
         "GUID:255de8069ce706544836a6062b00ac0d",
-        "GUID:eae3afb0047ccb6859e5272b570feadc",
-        "GUID:439919d2a7071004695af55cbbe6745b"
+        "GUID:d61261d1a98c4fafa1e0b59ab5c62fcc",
+        "GUID:fd9fc13d61e743afafe890fe76818e74"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

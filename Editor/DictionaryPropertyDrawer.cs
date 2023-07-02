@@ -2,7 +2,7 @@ using AlephVault.Unity.Support.Generic.Authoring.Types;
 using UnityEditor;
 
 
-namespace GameMeanMachine.Unity.WindRose.RefMapChars
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Authoring
     {
