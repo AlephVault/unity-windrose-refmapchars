@@ -21,7 +21,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             ///   This is a full bundle and has two sexes which
             ///   contain all the relevant data.
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapBundle", menuName = "Wind Rose/RefMap Chars/RefMap Bundle", order = 101)]
+            [CreateAssetMenu(fileName = "NewRefMapBundle", menuName = "AlephVault/Wind Rose/RefMap Chars/RefMap Bundle", order = 101)]
             public class RefMapBundle : ScriptableObject
             {
                 /// <summary>
@@ -73,7 +73,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                 }
                 
 #if UNITY_EDITOR
-                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Full RefMap Bundle", true, 108)]
+                [MenuItem("Assets/Create/AlephVault/Wind Rose/RefMap Chars/Full RefMap Bundle", true, 108)]
                 private static bool CanCreateFullRefMapBundle()
                 {
                     Object obj = Selection.activeObject;
@@ -89,7 +89,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                     return AssetDatabase.IsValidFolder(path);
                 }
 
-                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Full RefMap Bundle", false, 108)]
+                [MenuItem("Assets/Create/AlephVault/Wind Rose/RefMap Chars/Full RefMap Bundle", false, 108)]
                 private static void CreateFullRefMapBundle()
                 {
                     // Get the selected object.

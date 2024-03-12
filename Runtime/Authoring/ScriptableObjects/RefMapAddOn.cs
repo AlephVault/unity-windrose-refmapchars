@@ -28,7 +28,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             ///   in two different items, but working as a complement
             ///   of each other respectively).
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "Wind Rose/RefMap Chars/Standard Add-On (10 colors variations)", order = 105)]
+            [CreateAssetMenu(fileName = "NewRefMapItem", menuName = "AlephVault/Wind Rose/RefMap Chars/Standard Add-On (10 colors variations)", order = 105)]
             public class RefMapAddOn : ScriptableObject
             {
                 /// <summary>
@@ -113,7 +113,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                     }
                 }
 
-                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", true, 108)]
+                [MenuItem("Assets/Create/AlephVault/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", true, 108)]
                 private static bool CanCreateManyRefMapAddOns()
                 {
                     UnityEngine.Object obj = Selection.activeObject;
@@ -129,7 +129,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                     return AssetDatabase.IsValidFolder(path);
                 }
                 
-                [MenuItem("Assets/Create/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", false, 105)]
+                [MenuItem("Assets/Create/AlephVault/Wind Rose/RefMap Chars/Standard Add-Ons (Bulk; 10 colors variations)", false, 105)]
                 private static void CreateManyRefMapAddOns()
                 {
                     // Get the selected object.
