@@ -19,7 +19,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             ///   (add-on types) belong to a sex, and contain add-ons
             ///   that are defined within.
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapItemType", menuName = "AlephVault/Wind Rose/RefMap Chars/Standard Item Category (no color variations)", order = 104)]
+            [CreateAssetMenu(fileName = "NewRefMapItemType", menuName = "Aleph Vault/WindRose/RefMap Chars/Standard Item Category (no color variations)", order = 104)]
             public class RefMapItemType : ScriptableObject
             {
                 /// <summary>

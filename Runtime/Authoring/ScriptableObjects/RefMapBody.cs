@@ -23,7 +23,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             ///   Only 8 variations are allowed. A body belongs
             ///   to a certain sex trait.
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapBody", menuName = "AlephVault/Wind Rose/RefMap Chars/RefMap Body", order = 103)]
+            [CreateAssetMenu(fileName = "NewRefMapBody", menuName = "Aleph Vault/WindRose/RefMap Chars/RefMap Body", order = 103)]
             public class RefMapBody : ScriptableObject
             {
                 /// <summary>

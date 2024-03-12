@@ -22,7 +22,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             ///   One particular group is the body trait, which
             ///   is kept aside.
             /// </summary>
-            [CreateAssetMenu(fileName = "NewRefMapSex", menuName = "AlephVault/Wind Rose/RefMap Chars/Sex Data", order = 102)]
+            [CreateAssetMenu(fileName = "NewRefMapSex", menuName = "Aleph Vault/WindRose/RefMap Chars/Sex Data", order = 102)]
             public class RefMapSex : ScriptableObject
             {
                 /// <summary>
