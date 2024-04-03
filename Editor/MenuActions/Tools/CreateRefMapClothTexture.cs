@@ -1,4 +1,5 @@
-using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AlephVault.Unity.MenuActions.Types;
 using AlephVault.Unity.WindRose.RefMapChars.Core;
@@ -16,6 +17,9 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
             {
                 using Authoring.ScriptableObjects;
 
+                /// <summary>
+                ///   Defines a menu option to generate a texture.
+                /// </summary>
                 public static class CreateRefMapClothTexture
                 {
                     public class CreateRefMapClothTextureWindow : SmartEditorWindow
@@ -53,6 +57,49 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             public RefMapSource Cloak { get; set; }
                             public bool BootsOverPants { get; set; } 
                         }
+
+                        // A structure encompassing the index and color code.
+                        private struct RefMapSourceFields
+                        {
+                            public ushort Index;
+                            public RefMapAddOn.ColorCode Color;
+
+                            public bool RenderProperty(string caption, IEnumerable<ushort> options)
+                            {
+                                List<int> optionValues = new List<int>();
+                                List<GUIContent> optionCaptions = new List<GUIContent>();
+                                foreach (ushort option in options)
+                                {
+                                    optionValues.Add(option);
+                                    optionCaptions.Add(new GUIContent(option.ToString()));
+                                }
+                                
+                                bool changed;
+                                EditorGUILayout.BeginHorizontal();
+                                changed = UpdateProperty(ref Index, (ushort)EditorGUILayout.IntPopup(
+                                    new GUIContent(caption, "Tooltip for popup"), Index,
+                                    optionCaptions.ToArray(), optionValues.ToArray()
+                                ));
+                                changed = UpdateProperty(
+                                    ref Color, (RefMapAddOn.ColorCode)EditorGUILayout.EnumPopup(
+                                        caption + " color", Color
+                                    )
+                                ) || changed;
+                                EditorGUILayout.EndHorizontal();
+                                return changed;
+                            }
+
+                            /// <summary>
+                            ///   Gets the corresponding source for an add on
+                            ///   given the current fields.
+                            /// </summary>
+                            /// <param name="addOnType">The type this fields set corresponds to</param>
+                            /// <returns>The REFMAP source</returns>
+                            public RefMapSource GetSource(RefMapAddOnType addOnType)
+                            {
+                                return PickAddOn(addOnType, Index, Color);
+                            }
+                        }
                         
                         // The width of the texture.
                         private const int TextureWidth = 128;
@@ -89,10 +136,52 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                         private TextureFormat textureFormat = TextureFormat.ARGB32;
 
                         // The temporary composite that will be maintained.
-                        private TmpRefMapStandardComposite composite = null;
+                        private TmpRefMapStandardComposite composite;
 
                         // The generated texture.
-                        private Texture2D generatedTexture = null;
+                        private Texture2D generatedTexture;
+
+                        // Character property: BootsOverPants.
+                        private bool bootsOverPants;
+
+                        // Character property: Boots (index and color).
+                        private RefMapSourceFields boots;
+                        
+                        // Character property: Pants (index and color).
+                        private RefMapSourceFields pants;
+
+                        // Character property: Shirt (index and color).
+                        private RefMapSourceFields shirt;
+                        
+                        // Character property: Chest (index and color).
+                        private RefMapSourceFields chest;
+                        
+                        // Character property: Waist (index and color).
+                        private RefMapSourceFields waist;
+                        
+                        // Character property: Arms (index and color).
+                        private RefMapSourceFields arms;
+                        
+                        // Character property: LongShirt (index and color).
+                        private RefMapSourceFields longShirt;
+                        
+                        // Character property: Shoulder (index and color).
+                        private RefMapSourceFields shoulder;
+                        
+                        // Character property: Cloak (index and color).
+                        private RefMapSourceFields cloak;
+                        
+                        // Tracks a property to update it given a new value.
+                        private static bool UpdateProperty<T>(ref T value, T newValue)
+                        {
+                            if (!EqualityComparer<T>.Default.Equals(value, newValue))
+                            {
+                                value = newValue;
+                                return true;
+                            }
+
+                            return false;
+                        }
 
                         // Makes a texture out of the current composite data.
                         private void MakeTexture() {
@@ -142,17 +231,16 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                         // Gets the default entry for an add-on type.
                         private RefMapSource DefaultAddOn(RefMapSex.AddOnTypeCode addOnTypeCode)
                         {
-                            return PickAddOn(addOnTypeCode, -1, RefMapAddOn.ColorCode.Black);
+                            return PickAddOn(sex[addOnTypeCode], -1, RefMapAddOn.ColorCode.Black);
                         }
 
                         // Picks a specific add-on.
-                        private RefMapSource PickAddOn(
-                            RefMapSex.AddOnTypeCode addOnTypeCode,
+                        private static RefMapSource PickAddOn(
+                            RefMapAddOnType addOnType,
                             int addOnIndex,
                             RefMapAddOn.ColorCode colorCode
                         )
                         {
-                            RefMapAddOnType addOnType = sex[addOnTypeCode];
                             if (addOnType.Count == 0)
                             {
                                 return null;
@@ -230,25 +318,92 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                                 compositeChanged = true;
                             }
                             
-                            // TODO Implement everything here. Every single assignment.
-                            // TODO This needs new fields to be assigned.
-                            composite.BootsOverPants = EditorGUILayout.ToggleLeft(
-                                "Boots Over Pants", composite.BootsOverPants
-                            );
+                            // 1. Whether the boots should be rendered over the pants.
+                            compositeChanged = UpdateProperty(ref bootsOverPants, EditorGUILayout.ToggleLeft(
+                                "Render Boots Over Pants", composite.BootsOverPants
+                            )) | compositeChanged;
+                            composite.BootsOverPants = bootsOverPants;
+                            
+                            // 2. Render property: boots.
+                            compositeChanged = boots.RenderProperty(
+                                "Boots", sex[RefMapSex.AddOnTypeCode.Boots].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Boots = boots.GetSource(sex[RefMapSex.AddOnTypeCode.Boots]);
+                            
+                            // 3. Render property: pants.
+                            compositeChanged = pants.RenderProperty(
+                                "Pants", sex[RefMapSex.AddOnTypeCode.Pants].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Pants = pants.GetSource(sex[RefMapSex.AddOnTypeCode.Pants]);
+
+                            // 4. Render property: shirt.
+                            compositeChanged = shirt.RenderProperty(
+                                "Shirt", sex[RefMapSex.AddOnTypeCode.Shirt].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Shirt = shirt.GetSource(sex[RefMapSex.AddOnTypeCode.Shirt]);
+
+                            // 5. Render property: chest.
+                            compositeChanged = chest.RenderProperty(
+                                "Chest", sex[RefMapSex.AddOnTypeCode.Chest].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Chest = chest.GetSource(sex[RefMapSex.AddOnTypeCode.Chest]);
+
+                            // 6. Render property: waist.
+                            compositeChanged = waist.RenderProperty(
+                                "Waist", sex[RefMapSex.AddOnTypeCode.Waist].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Waist = waist.GetSource(sex[RefMapSex.AddOnTypeCode.Waist]);
+
+                            // 7. Render property: arms.
+                            compositeChanged = arms.RenderProperty(
+                                "Arms", sex[RefMapSex.AddOnTypeCode.Arms].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Arms = waist.GetSource(sex[RefMapSex.AddOnTypeCode.Arms]);
+
+                            // 8. Render property: longShirt.
+                            compositeChanged = longShirt.RenderProperty(
+                                "Long Shirt", sex[RefMapSex.AddOnTypeCode.LongShirt].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.LongShirt = longShirt.GetSource(sex[RefMapSex.AddOnTypeCode.LongShirt]);
+
+                            // 9. Render property: shoulder.
+                            compositeChanged = shoulder.RenderProperty(
+                                "Shoulder", sex[RefMapSex.AddOnTypeCode.Shoulder].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Shoulder = shoulder.GetSource(sex[RefMapSex.AddOnTypeCode.Shoulder]);
+
+                            // 10. Render property: cloak.
+                            compositeChanged = cloak.RenderProperty(
+                                "Cloak", sex[RefMapSex.AddOnTypeCode.Cloak].AddOnKeys()
+                            ) || compositeChanged;
+                            composite.Cloak = cloak.GetSource(sex[RefMapSex.AddOnTypeCode.Cloak]);
+                            
                             if (compositeChanged)
                             {
                                 ClearTexture();
                                 MakeTexture();
                             }
 
-                            SmartButton("Generate", () =>
+                            if (GUILayout.Button("Generate"))
                             {
-                                // TODO implement the generation.
-                            });
+                                string path = EditorUtility.SaveFilePanelInProject(
+                                    "Save cloth texture", "Cloth", "png",
+                                    "Save the generated cloth texture"
+                                );
+                                if (path != null)
+                                {
+                                    SmartExecute(() =>
+                                    {
+                                        File.WriteAllBytes(path, generatedTexture.EncodeToPNG());
+                                        AssetDatabase.Refresh();
+                                        Debug.Log("Texture successfully generated");
+                                    });
+                                }
+                            }
                         }
                     }
                     
-                    [MenuItem("Assets/Create/Aleph Vault/WindRose/RefMap Chars/Cloth Texture", false, 204)]
+                    [MenuItem("Assets/Create/Aleph Vault/WindRose/RefMap Chars/Cloth Texture", false, 115)]
                     public static void ExecuteBoilerplate()
                     {
                         CreateRefMapClothTextureWindow window = ScriptableObject.CreateInstance<CreateRefMapClothTextureWindow>();
