@@ -398,14 +398,14 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             {
                                 ClearTexture();
                                 MakeTexture();
-                                EditorGUILayout.BeginVertical();
-                                Rect rect = EditorGUILayout.GetControlRect(
-                                    GUILayout.Width(TextureWidth),
-                                    GUILayout.Height(TextureHeight)
+                            }
+
+                            if (generatedTexture)
+                            {
+                                EditorGUILayout.LabelField(
+                                    new GUIContent(generatedTexture),
+                                    GUILayout.Width(128), GUILayout.Height(192)
                                 );
-                                Debug.Log($"Rect is: {rect}");
-                                GUI.DrawTexture(rect, generatedTexture);
-                                EditorGUILayout.EndVertical();
                             }
 
                             if (GUILayout.Button("Generate"))
@@ -436,6 +436,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                                             settings.format = TextureImporterFormat.Automatic;
                                             textureImporter.SetPlatformTextureSettings(settings);
                                             textureImporter.SaveAndReimport();
+                                            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
                                             AssetDatabase.Refresh();
                                             Debug.Log("Texture import settings setup done");
                                         }
