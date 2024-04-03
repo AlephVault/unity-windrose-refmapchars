@@ -47,7 +47,18 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                 public int Count => addOns.Count;
 
                 /// <summary>
-                ///   Get the available add-ons in the type.
+                ///   Gets the available add-on keys in the type.
+                /// </summary>
+                /// <returns></returns>
+                public IEnumerable<ushort> AddOnKeys()
+                {
+                    return from addOn in addOns
+                           where addOn.Value != null
+                           select addOn.Key;
+                }
+
+                /// <summary>
+                ///   Gets the available add-ons in the type.
                 /// </summary>
                 /// <returns>An enumerable of pairs index/add-on</returns>
                 public IEnumerable<KeyValuePair<ushort, RefMapAddOn>> AddOns()
