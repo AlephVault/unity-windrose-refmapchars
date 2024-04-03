@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -97,7 +98,14 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             /// <returns>The REFMAP source</returns>
                             public RefMapSource GetSource(RefMapAddOnType addOnType)
                             {
-                                return PickAddOn(addOnType, Index, Color);
+                                try
+                                {
+                                    return PickAddOn(addOnType, Index, Color);
+                                }
+                                catch (Exception e)
+                                {
+                                    return null;
+                                }
                             }
                         }
                         
