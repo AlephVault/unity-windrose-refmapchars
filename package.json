@@ -1,6 +1,6 @@
 {
   "name": "com.alephvault.unity.windrose.refmapchars",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "displayName": "Aleph Vault - Unity - WindRose REFMAP Chars",
   "description": "Defines two pipelines to compose REFMAP characters, includes the standard REFMAP assets, and integrates everyting into character object.",
   "unity": "2020.3",
