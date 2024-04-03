@@ -67,8 +67,8 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
 
                             public bool RenderProperty(string caption, IEnumerable<ushort> options)
                             {
-                                List<int> optionValues = new List<int>();
-                                List<GUIContent> optionCaptions = new List<GUIContent>();
+                                List<int> optionValues = new List<int> { -2 };
+                                List<GUIContent> optionCaptions = new List<GUIContent> { new("None") };
                                 foreach (ushort option in options)
                                 {
                                     optionValues.Add(option);
@@ -249,12 +249,14 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             RefMapAddOn.ColorCode colorCode
                         )
                         {
-                            if (addOnType.Count == 0)
+                            if (addOnType.Count == 0 || addOnIndex == -2)
                             {
                                 return null;
                             }
 
-                            RefMapAddOn addOn = addOnType[addOnIndex < 0 ? addOnType.AddOns().First().Key: (ushort)addOnIndex];
+                            RefMapAddOn addOn = addOnType[
+                                addOnIndex == -1 ? addOnType.AddOns().First().Key : (ushort)addOnIndex
+                            ];
                             if (addOn.Count == 0)
                             {
                                 return null;
