@@ -76,17 +76,23 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                                 }
                                 
                                 bool changed;
-                                EditorGUILayout.BeginHorizontal();
-                                changed = UpdateProperty(ref Index, (ushort)EditorGUILayout.IntPopup(
-                                    new GUIContent(caption, "Tooltip for popup"), Index,
-                                    optionCaptions.ToArray(), optionValues.ToArray()
-                                ));
-                                changed = UpdateProperty(
-                                    ref Color, (RefMapAddOn.ColorCode)EditorGUILayout.EnumPopup(
-                                        caption + " color", Color
-                                    )
-                                ) || changed;
-                                EditorGUILayout.EndHorizontal();
+                                try
+                                {
+                                    EditorGUILayout.BeginHorizontal();
+                                    changed = UpdateProperty(ref Index, (ushort)EditorGUILayout.IntPopup(
+                                        new GUIContent(caption, "Tooltip for popup"), Index,
+                                        optionCaptions.ToArray(), optionValues.ToArray()
+                                    ));
+                                    changed = UpdateProperty(
+                                        ref Color, (RefMapAddOn.ColorCode)EditorGUILayout.EnumPopup(
+                                            caption + " color", Color
+                                        )
+                                    ) || changed;
+                                }
+                                finally
+                                {
+                                    EditorGUILayout.EndHorizontal();
+                                }
                                 return changed;
                             }
 
@@ -368,7 +374,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             compositeChanged = arms.RenderProperty(
                                 "Arms", sex[RefMapSex.AddOnTypeCode.Arms].AddOnKeys()
                             ) || compositeChanged;
-                            composite.Arms = waist.GetSource(sex[RefMapSex.AddOnTypeCode.Arms]);
+                            composite.Arms = arms.GetSource(sex[RefMapSex.AddOnTypeCode.Arms]);
 
                             // 8. Render property: longShirt.
                             compositeChanged = longShirt.RenderProperty(
@@ -392,6 +398,14 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                             {
                                 ClearTexture();
                                 MakeTexture();
+                                EditorGUILayout.BeginVertical();
+                                Rect rect = EditorGUILayout.GetControlRect(
+                                    GUILayout.Width(TextureWidth),
+                                    GUILayout.Height(TextureHeight)
+                                );
+                                Debug.Log($"Rect is: {rect}");
+                                GUI.DrawTexture(rect, generatedTexture);
+                                EditorGUILayout.EndVertical();
                             }
 
                             if (GUILayout.Button("Generate"))
@@ -406,6 +420,29 @@ namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
                                     {
                                         File.WriteAllBytes(path, generatedTexture.EncodeToPNG());
                                         AssetDatabase.Refresh();
+                                        TextureImporter textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+                                        if (textureImporter)
+                                        {
+                                            Debug.Log("Texture import settings setup started");
+                                            textureImporter.isReadable = true;
+                                            textureImporter.textureType = TextureImporterType.Sprite;
+                                            textureImporter.spriteImportMode = SpriteImportMode.Single;
+                                            textureImporter.spritePixelsPerUnit = 32;
+                                            textureImporter.filterMode = FilterMode.Point;
+                                            textureImporter.wrapMode = TextureWrapMode.Clamp;
+                                            textureImporter.alphaIsTransparency = true;
+
+                                            TextureImporterPlatformSettings settings = textureImporter.GetPlatformTextureSettings("Standalone");
+                                            settings.format = TextureImporterFormat.Automatic;
+                                            textureImporter.SetPlatformTextureSettings(settings);
+                                            textureImporter.SaveAndReimport();
+                                            AssetDatabase.Refresh();
+                                            Debug.Log("Texture import settings setup done");
+                                        }
+                                        else
+                                        {
+                                            Debug.LogWarning("The generated texture does not have an import");
+                                        }
                                         Debug.Log("Texture successfully generated");
                                     });
                                 }
