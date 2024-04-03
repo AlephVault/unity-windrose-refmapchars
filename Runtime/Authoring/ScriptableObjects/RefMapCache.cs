@@ -4,6 +4,9 @@ using AlephVault.Unity.TextureUtils.Types;
 using AlephVault.Unity.WindRose.RefMapChars.Core;
 using AlephVault.Unity.WindRose.RefMapChars.Types;
 using Unity.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 
@@ -23,6 +26,25 @@ namespace AlephVault.Unity.WindRose.RefMapChars
             [CreateAssetMenu(fileName = "NewRefMapCache", menuName = "Aleph Vault/WindRose/RefMap Chars/Cache", order = 107)]
             public class RefMapCache : ScriptableObject
             {
+#if UNITY_EDITOR
+                /// <summary>
+                ///   This custom editor forces the mask textures
+                ///   to be properly changed to the default values
+                ///   if they're null.
+                /// </summary>
+                [CustomEditor(typeof(RefMapCache))]
+                public class RefMapCacheEditor : Editor
+                {
+                    public override void OnInspectorGUI()
+                    {
+                        DrawDefaultInspector();
+
+                        RefMapCache yourObject = (RefMapCache)target;
+                        yourObject.RefreshMasks();
+                    }
+                }
+#endif
+                
                 /// <summary>
                 ///   The size of the last second rescue queue.
                 ///   A negative value will imply a shift until
@@ -157,7 +179,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
 
                 private SpriteGrid GridFromTexture(string key, Func<Texture2D> onAbsent)
                 {
-                    Texture2D usedTexture = texturePool.Use(key, onAbsent, (t) => Destroy(t));
+                    Texture2D usedTexture = texturePool.Use(key, onAbsent, Destroy);
                     return spritePool.Get(key, () =>
                     {
                         return new Tuple<Texture2D, Rect?, Size2D, Size2D, float, Action, Action>(
@@ -231,6 +253,28 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                         }
                     });
                 }
+                
+#if UNITY_EDITOR
+                private void RefreshMasks()
+                {
+                    if (maskD && maskU && maskLRU && maskLR) return;
+
+                    if (!maskD) maskD = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                        "Packages/com.alephvault.unity.windrose.refmapchars/Runtime/Graphics/mask-d.png"
+                    );
+                    if (!maskLR) maskLR = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                        "Packages/com.alephvault.unity.windrose.refmapchars/Runtime/Graphics/mask-lr.png"
+                    );
+                    if (!maskLRU) maskLRU = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                        "Packages/com.alephvault.unity.windrose.refmapchars/Runtime/Graphics/mask-lru.png"
+                    );
+                    if (!maskU) maskU = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                        "Packages/com.alephvault.unity.windrose.refmapchars/Runtime/Graphics/mask-u.png"
+                    );
+                    Debug.Log("Updating textures...");
+                    EditorUtility.SetDirty(this);
+                }
+#endif
                 
                 private void OnEnable()
                 {
