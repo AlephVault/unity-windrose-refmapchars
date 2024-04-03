@@ -4,6 +4,7 @@ using System.Linq;
 using AlephVault.Unity.TextureUtils.Types;
 using AlephVault.Unity.TextureUtils.Utils;
 using AlephVault.Unity.WindRose.RefMapChars.Types;
+using Unity.Collections;
 using UnityEngine;
 
 
@@ -20,6 +21,26 @@ namespace AlephVault.Unity.WindRose.RefMapChars
         /// </summary>
         public static class RefMapUtils
         {
+            public const int TextureWidth = 128;
+            public const int TextureHeight = 192;
+            public const int FrameWidth = 32;
+            public const int FrameHeight = 48;
+            private const int DirectionSize = TextureWidth * FrameHeight;
+            private const int AntiBleedBufferSize = TextureWidth * 2;
+            private static Color32[] bleedingBuffer = InitAntiBleedingBuffer();
+            private const int AntiBleedDirectionSize = DirectionSize + AntiBleedBufferSize;
+
+            private static Color32[] InitAntiBleedingBuffer()
+            {
+                Color32[] buffer = new Color32[AntiBleedBufferSize];
+                for (int i = 0; i < AntiBleedBufferSize; i++)
+                {
+                    buffer[i] = new Color32(0, 0, 0, 0);
+                }
+
+                return buffer;
+            }
+            
             private static void Paste(Texture target, params Texture2DSource[] sources)
             {
                 if (target == null) throw new ArgumentNullException(nameof(target));
@@ -113,6 +134,51 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                     composite?.SkilledHandItem?.ToTexture2DSource(maskD)
                 );
             }
+            
+            /// <summary>
+            ///   Converts a <see cref="RenderTexture" /> to a <see cref="Texture2D"/>
+            ///   by telling a render format in the target texture.
+            /// </summary>
+            /// <param name="renderTexture">The texture to convert</param>
+            /// <param name="finalFormat">The format to use for the new texture</param>
+            /// <returns>The new texture</returns>
+            public static Texture2D ToTexture2D(RenderTexture renderTexture, TextureFormat finalFormat)
+            {
+                Texture2D tex = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
+                // ReadPixels looks at the active RenderTexture.
+                RenderTexture.active = renderTexture;
+                tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+                tex.Apply();
+                return tex;
+            }
+            
+            /// <summary>
+            ///   Creates a new texture based on a previous texture but adds
+            ///   some anti-bleeding margin for the new texture.
+            /// </summary>
+            /// <param name="sourceTexture">The source texture</param>
+            /// <returns>A new texture which adds anti-bleeding margin</returns>
+            public static Texture2D FixBleeding(Texture2D sourceTexture)
+            {
+                Texture2D fixedImage = new Texture2D(
+                    TextureWidth, TextureHeight + 8, sourceTexture.format, 
+                    false
+                );
+                NativeArray<Color32> sourcePixels = sourceTexture.GetPixelData<Color32>(0);
+                NativeArray<Color32> fixedPixels = fixedImage.GetPixelData<Color32>(0);
+                for (int i = 0; i < 4; i++)
+                {
+                    fixedPixels.Slice(i * AntiBleedDirectionSize, DirectionSize).CopyFrom(
+                        sourcePixels.Slice(i * DirectionSize, DirectionSize)
+                    );
+                    fixedPixels.Slice(i * AntiBleedDirectionSize + DirectionSize, AntiBleedBufferSize).CopyFrom(
+                        bleedingBuffer
+                    );
+                }
+                fixedImage.Apply();
+                return fixedImage;
+            }
+
         }
     }
 }

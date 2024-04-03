@@ -125,65 +125,17 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                 // The sprite pool for this cache. It extracts
                 // stuff from the texture pool.
                 private IdentifiedSpriteGridPool<string> spritePool;
-
-                private const int TextureWidth = 128;
-                private const int TextureHeight = 192;
-                private const int FrameWidth = 32;
-                private const int FrameHeight = 48;
-                private const int DirectionSize = TextureWidth * FrameHeight;
-                private const int AntiBleedBufferSize = TextureWidth * 2;
-                private const int AntiBleedDirectionSize = DirectionSize + AntiBleedBufferSize;
-                private static Color32[] bleedingBuffer = InitAntiBleedingBuffer();
-
-                private static Color32[] InitAntiBleedingBuffer()
-                {
-                    Color32[] buffer = new Color32[AntiBleedBufferSize];
-                    for (int i = 0; i < AntiBleedBufferSize; i++)
-                    {
-                        buffer[i] = new Color32(0, 0, 0, 0);
-                    }
-
-                    return buffer;
-                }
                 
-                private Texture2D ToTexture2D(RenderTexture rTex)
-                {
-                    Texture2D tex = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
-                    // ReadPixels looks at the active RenderTexture.
-                    RenderTexture.active = rTex;
-                    tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
-                    tex.Apply();
-                    return tex;
-                }
-                
-                private Texture2D FixBleeding(Texture2D sourceTexture)
-                {
-                    Texture2D fixedImage = new Texture2D(
-                        TextureWidth, TextureHeight + 8, finalFormat, 
-                        false
-                    );
-                    NativeArray<Color32> sourcePixels = sourceTexture.GetPixelData<Color32>(0);
-                    NativeArray<Color32> fixedPixels = fixedImage.GetPixelData<Color32>(0);
-                    for (int i = 0; i < 4; i++)
-                    {
-                        fixedPixels.Slice(i * AntiBleedDirectionSize, DirectionSize).CopyFrom(
-                            sourcePixels.Slice(i * DirectionSize, DirectionSize)
-                        );
-                        fixedPixels.Slice(i * AntiBleedDirectionSize + DirectionSize, AntiBleedBufferSize).CopyFrom(
-                            bleedingBuffer
-                        );
-                    }
-                    fixedImage.Apply();
-                    return fixedImage;
-                }
-
                 private SpriteGrid GridFromTexture(string key, Func<Texture2D> onAbsent)
                 {
                     Texture2D usedTexture = texturePool.Use(key, onAbsent, Destroy);
                     return spritePool.Get(key, () =>
                     {
                         return new Tuple<Texture2D, Rect?, Size2D, Size2D, float, Action, Action>(
-                            usedTexture, null, new Size2D { Width = FrameWidth, Height = FrameHeight},
+                            usedTexture, null, new Size2D
+                            {
+                                Width = RefMapUtils.FrameWidth, Height = RefMapUtils.FrameHeight
+                            },
                             new Size2D { Width = 0, Height = 2 }, pixelsPerUnit, () => {}, () =>
                             {
                                 texturePool?.Release(key);
@@ -205,20 +157,22 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                         if (UseHardwareAcceleration)
                         {
                             RenderTexture target = new RenderTexture(
-                                TextureWidth, TextureHeight, renderDepth, renderFormat, 0
+                                RefMapUtils.TextureWidth, RefMapUtils.TextureHeight, renderDepth, renderFormat, 0
                             );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return FixBleeding(ToTexture2D(target));
+                            return RefMapUtils.FixBleeding(RefMapUtils.ToTexture2D(target, finalFormat));
                         }
                         else
                         {
-                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
+                            Texture2D target = new Texture2D(
+                                RefMapUtils.TextureWidth, RefMapUtils.TextureHeight, finalFormat, false
+                            );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return FixBleeding(target);
+                            return RefMapUtils.FixBleeding(target);
                         }
                     });
                 }
@@ -236,20 +190,22 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                         if (UseHardwareAcceleration)
                         {
                             RenderTexture target = new RenderTexture(
-                                TextureWidth, TextureHeight, renderDepth, renderFormat, 0
+                                RefMapUtils.TextureWidth, RefMapUtils.TextureHeight, renderDepth, renderFormat, 0
                             );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return FixBleeding(ToTexture2D(target));
+                            return RefMapUtils.FixBleeding(RefMapUtils.ToTexture2D(target, finalFormat));
                         }
                         else
                         {
-                            Texture2D target = new Texture2D(TextureWidth, TextureHeight, finalFormat, false);
+                            Texture2D target = new Texture2D(
+                                RefMapUtils.TextureWidth, RefMapUtils.TextureHeight, finalFormat, false
+                            );
                             RefMapUtils.Paste(
                                 target, composite, maskD, maskLRU, maskLR, maskU
                             );
-                            return FixBleeding(target);
+                            return RefMapUtils.FixBleeding(target);
                         }
                     });
                 }
