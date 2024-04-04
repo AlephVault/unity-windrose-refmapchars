@@ -8,7 +8,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {
-        namespace Selectors
+        namespace Selections
         {
             /// <summary>
             ///   The selection to spawn a staying-only statue rose.

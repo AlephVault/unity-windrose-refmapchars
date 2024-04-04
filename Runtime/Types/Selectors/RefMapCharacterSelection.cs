@@ -12,7 +12,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Types
     {
-        namespace Selectors
+        namespace Selections
         {
             /// <summary>
             ///   The selection to spawn a moving / staying character animation

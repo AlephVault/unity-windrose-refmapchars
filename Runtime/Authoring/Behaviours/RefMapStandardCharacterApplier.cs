@@ -1,5 +1,5 @@
 using AlephVault.Unity.SpriteUtils.Types;
-using AlephVault.Unity.WindRose.RefMapChars.Types.Selectors;
+using AlephVault.Unity.WindRose.RefMapChars.Types.Selections;
 using AlephVault.Unity.WindRose.SpriteUtils.Authoring.Behaviours;
 using UnityEngine;
 
