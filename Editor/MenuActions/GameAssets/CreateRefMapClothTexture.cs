@@ -8,13 +8,13 @@ using AlephVault.Unity.WindRose.RefMapChars.Types;
 using UnityEditor;
 using UnityEngine;
 
-namespace AlephVault.Unity.WindRose.RefMapChars.MenuActions.Bundles
+namespace AlephVault.Unity.WindRose.RefMapChars
 {
     namespace Editor
     {
         namespace MenuActions
         {
-            namespace Tools
+            namespace GameAssets
             {
                 using Authoring.ScriptableObjects;
 
