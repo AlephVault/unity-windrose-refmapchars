@@ -14,6 +14,12 @@ namespace AlephVault.Unity.WindRose.RefMapChars
         public interface IRefMapBaseModel
         {
             /// <summary>
+            ///   Used to state that no item/add-on will be used.
+            ///   This applies both to the items in the hands
+            /// </summary>
+            public const ushort Nothing = 0;
+            
+            /// <summary>
             ///   Data of the body color to use.
             /// </summary>
             public RefMapBody.ColorCode? BodyColor { get; }
