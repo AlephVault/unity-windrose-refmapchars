@@ -1,6 +1,7 @@
 using AlephVault.Unity.WindRose.RefMapChars.Authoring.ScriptableObjects;
 using AlephVault.Unity.WindRose.RefMapChars.Types;
 using AlephVault.Unity.WindRose.RefMapChars.Types.Traits;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -21,6 +22,10 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                 IApplier<BodyTrait>, IApplier<HairTrait>, IApplier<HatTrait>, IApplier<NecklaceTrait>,
                 IApplier<SkilledHandItemTrait>, IApplier<DumbHandItemTrait>
             {
+#if UNITY_EDITOR
+                public Color gizmoColor = Color.blue;
+#endif
+
                 /// <summary>
                 ///   The cache to use. This value must be
                 ///   set at edit / prefab time.
@@ -174,6 +179,24 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                 }
 
                 public abstract void RefreshTexture();
+                
+                                
+                [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
+                public static void DrawContour(RefMapBaseApplier obj, GizmoType gizmoType)
+                {
+                    Vector3 bottomLeft = obj.transform.position;
+                    Vector3 bottomRight = obj.transform.TransformPoint(Vector3.right);
+                    Vector3 topLeft = obj.transform.TransformPoint(Vector3.up * 1.5f);
+                    Vector3 topRight = obj.transform.TransformPoint(Vector3.up * 1.5f + Vector3.right);
+                    
+                    Gizmos.color = obj.gizmoColor;
+                    Gizmos.DrawLine(bottomLeft, bottomRight);
+                    Gizmos.DrawLine(topLeft, topRight);
+                    Gizmos.DrawLine(bottomLeft, topLeft);
+                    Gizmos.DrawLine(bottomRight, topRight);
+                    Gizmos.DrawLine(bottomLeft, topRight);
+                    Gizmos.DrawLine(topLeft, bottomRight);
+                }
             }
         }
     }

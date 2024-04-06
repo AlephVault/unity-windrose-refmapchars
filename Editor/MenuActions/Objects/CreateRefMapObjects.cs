@@ -171,10 +171,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                         visualGameObject.transform.parent = gameObject.transform;
                         visualGameObject.SetActive(false);
                         Behaviours.AddComponent<Pausable>(visualGameObject);
-                        SpriteRenderer spriteRenderer = Behaviours.AddComponent<SpriteRenderer>(visualGameObject);
-                        spriteRenderer.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(
-                            "Packages/com.alephvault.unity.windrose.refmapchars/Editor/Graphics/PlaceholderBody.png"
-                        );
+                        Behaviours.AddComponent<SpriteRenderer>(visualGameObject);
                         Behaviours.AddComponent<Visual>(visualGameObject, new Dictionary<string, object>() {
                             { "level", visualLevel }
                         });
