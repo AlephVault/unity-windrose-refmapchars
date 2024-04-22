@@ -180,7 +180,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
 
                 public abstract void RefreshTexture();
                 
-                                
+#if UNITY_EDITOR                                
                 [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
                 public static void DrawContour(RefMapBaseApplier obj, GizmoType gizmoType)
                 {
@@ -197,6 +197,7 @@ namespace AlephVault.Unity.WindRose.RefMapChars
                     Gizmos.DrawLine(bottomLeft, topRight);
                     Gizmos.DrawLine(topLeft, bottomRight);
                 }
+#endif
             }
         }
     }
